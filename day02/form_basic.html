@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Forms</title>
+    <style></style>
+
+    <script></script>
+  </head>
+  <body>
+    <h2>HTML Forms</h2>
+    <p>사용자 정보 입력</p>
+
+    <div>
+      <form action="form_ok.php" method="post">
+        <label for="uname">이름:</label><br />
+        <input
+          type="text"
+          id="uname"
+          name="uname"
+          placeholder="이름을 입력"
+        /><br /><label for="email">이메일</label><br />
+        <input type="text" id="email" name="email" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

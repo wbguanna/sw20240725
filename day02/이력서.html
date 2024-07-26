@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      * {
+        margin: 0 auto;
+      }
+
+      header {
+        margin: 40px auto;
+        width: 80%;
+      }
+
+      header h1 {
+        text-align: center;
+      }
+
+      main {
+        width: 80%;
+      }
+
+      .title {
+        border-bottom: 2px solid black;
+        border-top: 2px solid black;
+      }
+
+      ol,
+      li {
+        list-style: none;
+      }
+
+      table {
+        width: 100%;
+        border: 0.1px solid black;
+      }
+
+      table > caption {
+        margin: 0 1;
+        text-align: left;
+      }
+
+      tr {
+        height: 10px;
+      }
+      td {
+        min-width: 10%;
+        width: 30px;
+      }
+
+      table[name="basis"] tr:not(:first-child) > td:nth-child(odd) {
+        background-color: rgb(168, 228, 168);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div><h1 class="title">이력서</h1></div>
+    </header>
+
+    <main>
+      <ol>
+        <li>
+          <table name="basis">
+            <caption>
+              1.기초자료
+            </caption>
+            <tr>
+              <td rowspan="7">사진</td>
+            </tr>
+            <tr>
+              <td>성명</td>
+              <td></td>
+              <td>한문</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>주민등록번호</td>
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td>E-mail</td>
+              <td colspan="3"></td>
+            </tr>
+            <tr>
+              <td>전화번호</td>
+              <td></td>
+              <td>휴대폰</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>우편번호</td>
+              <td></td>
+              <td>비상연락처</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>주소</td>
+              <td colspan="3"></td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <caption>
+              2.학력사항
+            </caption>
+            <tr>
+              <td>기간</td>
+              <td>상세내용</td>
+              <td>비고</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          경력사항
+
+          <table>
+            <caption>
+              3.경력사항
+            </caption>
+            <tr>
+              <td>기간</td>
+              <td>관련내용</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </li>
+        <li>
+          <table>
+            <caption>
+              4.개인능력 및 장단점
+            </caption>
+            <tr>
+              <td rowspan="2">자격 및 포상</td>
+              <td colspan="2"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td rowspan="2">자격 및 포상</td>
+              <td colspan="2"></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td colspan="2"></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>취미</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </li>
+      </ol>
+    </main>
+  </body>
+</html>
