@@ -1,0 +1,12 @@
+// .devcontainer.json
+{
+    "customizations": {
+      "codespaces": {
+        "repositories": {
+          "wbguanna/sw202407-firebase": {
+            "permissions": "write-all"
+          }
+        }
+      }
+    }
+  }
