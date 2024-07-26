@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      li li {
+        background-color: yellow;
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <ul>
@@ -24,5 +30,36 @@
         </ol>
       </li>
     </ul>
+
+    <!-- table[border="1"]>tr[colspan="2"]{지역별 홍차}+((tr>td[rowspan="3"])+tr*3>td)*2 -->
+
+    <table border="1">
+      <tr colspan="2">
+        지역별 홍차
+      </tr>
+      <tr>
+        <td rowspan="3">중국</td>
+        <td>정산소종</td>
+      </tr>
+      <tr>
+        <td>기문</td>
+      </tr>
+      <tr>
+        <td>운남</td>
+      </tr>
+      <tr>
+        <td rowspan="4">인도 및 스리랑카</td>
+        <td>아삼</td>
+      </tr>
+      <tr>
+        <td>실론</td>
+      </tr>
+      <tr>
+        <td>다질링</td>
+      </tr>
+      <tr>
+        <td>닐기리</td>
+      </tr>
+    </table>
   </body>
 </html>
