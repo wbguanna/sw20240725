@@ -5,6 +5,9 @@
         "repositories": {
           "wbguanna/sw202407-firebase": {
             "permissions": "write-all"
+          },
+          "day2_playground": {
+            "permissions": "write-all"
           }
         }
       }
