@@ -1,0 +1,3 @@
+[submodule "day02/sw202407-firebase"]
+	path = day02/sw202407-firebase
+	url = https://github.com/wbguanna/sw202407-firebase.git
