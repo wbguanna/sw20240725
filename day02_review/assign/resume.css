@@ -1,0 +1,81 @@
+ol,
+li {
+  display: block;
+  width: 100%;
+}
+
+div {
+  width: 100%;
+}
+tr,
+th,
+td {
+  /* 테스트 용도 */
+  border: 1px solid black;
+}
+
+th {
+  text-align: center;
+  background-color: rgb(232, 255, 247);
+}
+
+th,
+td {
+  padding: 4px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.title {
+  margin: 30px 0;
+  text-align: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+.title > h1 {
+  display: block;
+  font: bolder;
+  font-size: 3em;
+  letter-spacing: 0.25em;
+}
+
+table {
+  table-layout: fixed;
+  border: 1px solid black; /* 테스트 용도 */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.form {
+  margin: 20px 0 0 0;
+}
+
+.photoCell {
+  width: 20%;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.photoCell > img {
+  max-height: 100%;
+  width: auto;
+}
+
+/* .basicTbl > tr:not(:first-child) > td,
+.basicTbl th {
+  padding: 10px;
+  width: 150px;
+  padding: 5px;
+} */
+
+.sign {
+  margin: 0 auto;
+  width: fit-content;
+  text-align: center;
+}
+.sign > p {
+  display: block;
+}
