@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function validationForm(event) {
+        event.preventDefault();
+        console.log("폼 유효성 검사");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>JS Form Validation</h1>
+    <form action="http://naver.com" id="myForm" onsubmit="validationForm">
+      제목: <input type="text" name="title" id="title" /><br />
+      이름: <input type="text" name="name" id="name" /><br />
+      내용: <textarea name="content" id="content"></textarea><br />
+      <input type="submit" value="저장" /><br />
+    </form>
+    <script>
+      var myForm = document.getElementById("myForm");
+      myForm.onsubmit = function (event) {
+        event.preventDefault();
+        if (myForm.title === "") {
+          alert("제목을 입력하세요");
+          myForm.title.focus();
+          return;
+        }
+
+        if (!myForm.name || myForm.name === "") {
+          alert("이름을 입력하세요");
+          myForm.name.focus();
+          return;
+        }
+
+        if (!myForm.content || myForm.content === "") {
+          alert("내용을 입력하세요");
+          myForm.content.focus();
+          return;
+        }
+
+        myForm.method = "get";
+        myForm.submit();
+      };
+    </script>
+  </body>
+</html>
