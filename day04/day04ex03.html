@@ -14,28 +14,29 @@
   <body>
     <h1>JS Form Validation</h1>
     <form action="http://naver.com" id="myForm" onsubmit="validationForm">
-      제목: <input type="text" name="title" id="title" /><br />
-      이름: <input type="text" name="name" id="name" /><br />
-      내용: <textarea name="content" id="content"></textarea><br />
+      제목: <input type="text" name="title" id="title" value="" /><br />
+      이름: <input type="text" name="name" id="name" value="" /><br />
+      내용: <textarea name="content" id="content" value=""></textarea><br />
       <input type="submit" value="저장" /><br />
     </form>
     <script>
       var myForm = document.getElementById("myForm");
       myForm.onsubmit = function (event) {
         event.preventDefault();
+        console.log(myForm.title);
         if (myForm.title === "") {
           alert("제목을 입력하세요");
           myForm.title.focus();
           return;
         }
 
-        if (!myForm.name || myForm.name === "") {
+        if (myForm.name === "") {
           alert("이름을 입력하세요");
           myForm.name.focus();
           return;
         }
 
-        if (!myForm.content || myForm.content === "") {
+        if (myForm.content === "") {
           alert("내용을 입력하세요");
           myForm.content.focus();
           return;
