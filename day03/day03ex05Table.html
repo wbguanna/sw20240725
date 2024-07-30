@@ -12,9 +12,10 @@
             var resetBtn = document.querySelector('#resetBtn');
 
             var handleEvent = function(event) {
-                demo.innerHTML += "<br>" + memoTxt.value;
+                // demo.innerHTML += "<br>" + memoTxt.value;
+                demo.tbody.innerHTML += `<tr align="center"><td><input type="checkbox"></td><td>{memoTxt.value}</td><td><button>수정</button></td><td><button>삭제</button></td></tr>`;
                 memoTxt.value = "";
-                memoTxt.focus();
+                demo.tbody.querySelector("tr:lastchild").focus();
             }
             clickBtn.addEventListener('click', handleEvent);
 
@@ -33,18 +34,22 @@
     <button type="button" id="resetBtn">Reset</button>
     <hr>
     <table id="demo" width="550" border="1">
-        <tr>
-            <th>확인</th>
-            <th>할일</th>
-            <th>수정</th>
-            <th>삭제</th>
-        </tr>
-        <tr align="center">
-            <td><input type="checkbox" name="chBoxTodos"></td>
-            <td>개 밥 주기</td>
-            <td><button>수정</button></td>
-            <td><button>삭제</button></td>
-        </tr>
+        <thead>
+            <tr>
+                <th>확인</th>
+                <th>할일</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr align="center">
+                <td><input type="checkbox" name="chBoxTodos"></td>
+                <td>개 밥 주기</td>
+                <td><button>수정</button></td>
+                <td><button>삭제</button></td>
+            </tr>
+        </tbody>
     </table>
 </body>
 </html>
