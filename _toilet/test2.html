@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" />
+    <script>
+        let value = "";
+        const $input = document.querySelector('input');
+        $input.addEventListener('onChange', (e)=> {
+            value = e.target.value;
+            console.log(value);
+        })
+        console.log(
+            Object.getPrototypeOf($input) === HTMLInputElement.prototype,
+            Object.getPrototypeOf(HTMLInputElement.prototype) === HTMLElement.prototype,
+            Object.getPrototypeOf(HTMLElement.prototype) === Element.prototype,
+            Object.getPrototypeOf(Element.prototype) === EventTarget.prototype,
+            Object.getPrototypeOf(EventTarget.prototype) === Object.prototype,
+        );
+    </script>
+    
+</body>
+</html>
