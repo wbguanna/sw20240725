@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input[name="input3"] {
+        width: 100px;
+        padding: 10px;
+        /* transition: width 0.4s ease-in-out; */
+        transition: width 0.4s cubic-bezier(0.49, 1.5, 0.53, -0.46);
+      }
+
+      input[name="input3"]:hover {
+        width: 250px;
+        padding: 15px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML Form 스타일 설정</h1>
+
+    <form action="">
+      <fieldset>
+        <legend>기본정보</legend>
+        <!-- <label for="input3">기본정보</label> -->
+        <input type="text" name="input3" id="input3" value="" />
+      </fieldset>
+    </form>
+  </body>
+</html>

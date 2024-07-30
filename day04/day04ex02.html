@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>초등학교 저학년용 계산기</h1>
+    <form action="">
+      <fieldset>
+        <legend>계산기</legend>
+        <label for=""></label>
+        <input
+          type="number"
+          id="left"
+          name="left"
+          size="2"
+          value="0"
+          class="hang1"
+        />
+        <select name="op" id="op">
+          <option value="+"></option>
+          <option value="-"></option>
+          <option value="*"></option>
+          <option value="/"></option>
+        </select>
+        <label for=""></label>
+        <input
+          type="number"
+          id="right"
+          name="right"
+          size="2"
+          value="0"
+          class="hang2"
+        />
+        <button>=</button>
+        <span id="result">0</span>
+      </fieldset>
+    </form>
+  </body>
+</html>
