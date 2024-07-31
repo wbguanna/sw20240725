@@ -37,8 +37,6 @@
           //console.dir(btn);
           // 트래버싱으로 상대적인 요소 찾기
           var trElement = btn.parentElement.parentElement;
-          //console.log('handleDelEvt 호출 ...', btn.dataset.seq);
-          // console.log("handleDelEvt 호출 ...", trElement.dataset.seq);
           var todo = trElement.querySelector(".todo");
 
           // 질문사항? : html 요소 상태를 가지고 판단해도 되는가?
@@ -52,13 +50,14 @@
           }
         };
 
-        HTMLButtonElement.prototype.handleDelEvt = function () {
+        HTMLButtonElement.prototype.handleDelEvt = function (todo) {
+          var trElem = todo.parentElement.parentElement;
+          var table = trElem.parentElement;
           console.log("delClickHandle");
         };
         HTMLInputElement.prototype.todoChangedHandle = function (todo) {
           var trElem = todo.parentElement.parentElement;
-          todoList.find((elem) => elem.seq == trElem.dataset.seq).title =
-            todo.value;
+          todoList.find((elem) => elem.seq == trElem.dataset.seq).title = todo.value;
         };
 
         // const todoChangedHandle = function (todo) {
