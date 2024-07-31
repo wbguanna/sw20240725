@@ -9,6 +9,12 @@
         background: #fff;
         border: none;
       }
+      .done {
+        text-decoration: line-through;
+      }
+      input:disabled::selection {
+        color: burlywood;
+      }
     </style>
 
     <script>
@@ -36,11 +42,11 @@
           var todo = trElement.querySelector(".todo");
 
           // 질문사항? : html 요소 상태를 가지고 판단해도 되는가?
-          if (todo.diabled) {
+          if (todo.disabled) {
             todo.disabled = false;
             btn.innerHTML = "수정완료";
           } else {
-            todo.diabled = true;
+            todo.disabled = true;
             btn.innerHTML = "수정";
             drawList();
           }
@@ -79,7 +85,7 @@
                           todoObj.done ? "done" : ""
                         }" type="text" onchange="todoChangedHandle(this)" disabled value="${
               todoObj.title
-            }"></input></td>
+            }"></input><button style="z-index=2; position: relative; left:10px;" onclick="toggleComplete(this)">hello</button></td>
                         <td><button onclick="editClickHandle(this)">수정</button></td>
                         <td><button onClick="handleDelEvt(this)">삭제</button></td>
                     </tr>`;
