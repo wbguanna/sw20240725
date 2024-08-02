@@ -1,0 +1,6 @@
+<div>
+    <h2>Hello Ajax World</h2>
+    <h3>XMLHttpRequest 객체에 의해서 불러 들여진 내용</h3>
+    <p>Ajax는 비동기 방식으로 데이터를 로드합니다.</p>
+    <p>text, HTML, XML, json 문자ㅕㄹ 등의 형식을 불러 와서 가공 할 수 있다.</p>
+</div>

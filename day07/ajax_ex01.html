@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // jQuery 라이브러리의 ajax() 함수 (CDN 또는 설치)
+      // axios 라이브러리 이용
+      // fetch 모듈 (웹 브라우저 표준)
+      // XMLHttpRequest 객체(웹 브라우저 표준)
+
+      //   EventTarget <- XMLHttpRequestEventTarget <- XMLHttpRequest
+      //   컴퓨터 세계의 상속은 일을 물려받는것... (확장된 기능, 범위가 늘어나야함, 나-부모님 관계보다는 하는일로 따진다..?)
+      //   감독과 작가, 조연출..이 무대를 만들어서 레디~스타트
+      const xhr = new XMLHttpRequest();
+      console.dir(xhr);
+
+      xhr.onreadystatechange = function (event) {
+        // console.log("readyState: ", xhr.readyState);
+        // console.log("State: ", xhr.State);
+
+        if (status === 200 && readyState === 4) {
+          // 논리곱, 논리합
+          // 요청 결과가 모두 로드 되면 시행 (onload 와 동일)
+          console.log("readyState: ", xhr.readyState);
+          console.log("State: ", xhr.State);
+          console.log(xhr.response);
+          console.log(xhr.responseText);
+          console.log(xhr.responseType);
+          console.dir(xhr);
+        }
+      };
+
+      var url = "data.xml";
+      var method = "GET";
+      xhr.open(method, url);
+
+      xhr.send();
+    </script>
+  </body>
+</html>
