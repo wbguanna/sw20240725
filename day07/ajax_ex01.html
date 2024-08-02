@@ -46,8 +46,11 @@
           //   console.log(noCnt);
 
           const todoListArea = document.querySelector("#todoListArea");
-          todoList.forEach((elem) => {
-            console.log(elem);
+          todoList.forEach((todo) => {
+            // console.log(todo);
+            const liElement = document.createElement("li");
+            liElement.textContent = todo.title;
+            todoListArea.appendChild(liElement);
           });
         }
       };
