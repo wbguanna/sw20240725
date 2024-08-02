@@ -9,24 +9,24 @@
     <ul id="todoListArea"></ul>
 
     <script>
-      const myAjax = function () {
+      const myAjax = function (callback) {
         const xhr = new XMLHttpRequest();
         // console.dir(xhr);
 
-        // xhr.onload = function (event) {
-        // onreadystatechange => onload(다 완료)
-        var todoListTxt = xhr.responseText;
-        var todoList = JSON.parse(todoListTxt)["todoList"];
-        var noCnt = JSON.parse(todoListTxt)["noCnt"];
+        xhr.onload = function (event) {
+          // onreadystatechange => onload(다 완료)
+          var todoListTxt = xhr.responseText;
+          var todoList = JSON.parse(todoListTxt)["todoList"];
+          var noCnt = JSON.parse(todoListTxt)["noCnt"];
 
-        const todoListArea = document.querySelector("#todoListArea");
-        todoList.forEach((todo) => {
-          // console.log(todo);
-          const liElement = document.createElement("li");
-          liElement.textContent = todo.title;
-          todoListArea.appendChild(liElement);
-        });
-        // };
+          const todoListArea = document.querySelector("#todoListArea");
+          todoList.forEach((todo) => {
+            // console.log(todo);
+            const liElement = document.createElement("li");
+            liElement.textContent = todo.title;
+            todoListArea.appendChild(liElement);
+          });
+        };
 
         var url = "todoList.json";
         var method = "GET";
