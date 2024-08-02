@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- jQuery 라이브러리 가져오기 -->
+    <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <button id="loadBtn">목록 불러오기</button>
+    <ul id="todoListArea"></ul>
+
+    <script>
+      // 다른 라이브러리의 Ajax 기능으로 대체하기
+
+      // - CDN 또는 설치가 필요한 라이브러리
+      // jQuery 라이브러리의 $.ajax(), $.getJson(), $.get(), $.post() 사용...
+      // axios 라이브러리 (리액트)
+      // - 기본 내장 라이브러리
+      // fetch (바닐라 js)
+
+      document.querySelector("#loadBtn").addEventListener("click", function () {
+        // onload 이벤트 핸들러를 콜백으로 사용.
+        $.ajax({
+          method: "GET",
+          url: "http://localhost:3000/todo",
+          success: function (i, j, k) {
+            console.log(i, j, k);
+            var xhr = event.target;
+            var todoList = JSON.parse(xhr.responseText.trim());
+            console.log(todoList);
+
+            const todoListArea = document.querySelector("#todoListArea");
+            todoList.forEach((todo) => {
+              const liElement = document.createElement("li");
+              liElement.innerHTML = todo.title;
+              todoListArea.appendChild(liElement);
+            });
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
