@@ -15,8 +15,19 @@
         const xhr = new XMLHttpRequest();
         // console.dir(xhr);
 
-        xhr.onload = function (event) {
+        xhr.onload = callback;
+
+        var url = "todoList.json";
+        var method = "GET";
+        xhr.open(method, url);
+
+        xhr.send();
+      };
+
+      document.querySelector("#loadBtn").addEventListener("click", () => {
+        myAjax(function (event) {
           // onreadystatechange => onload(다 완료)
+          var xhr = event.target;
           var todoListTxt = xhr.responseText;
           var todoList = JSON.parse(todoListTxt)["todoList"];
           var noCnt = JSON.parse(todoListTxt)["noCnt"];
@@ -28,17 +39,7 @@
             liElement.textContent = todo.title;
             todoListArea.appendChild(liElement);
           });
-        };
-
-        var url = "todoList.json";
-        var method = "GET";
-        xhr.open(method, url);
-
-        xhr.send();
-      };
-
-      document.querySelector("#loadBtn").addEventListener("click", () => {
-        myAjax();
+        });
       });
     </script>
   </body>
