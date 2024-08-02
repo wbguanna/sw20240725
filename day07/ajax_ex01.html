@@ -6,6 +6,8 @@
     <title>Document</title>
   </head>
   <body>
+    <ul id="todoListArea"></ul>
+
     <script>
       // jQuery 라이브러리의 ajax() 함수 (CDN 또는 설치)
       // axios 라이브러리 이용
@@ -22,19 +24,35 @@
         // console.log("readyState: ", xhr.readyState);
         // console.log("State: ", xhr.State);
 
-        if (status === 200 && readyState === 4) {
+        if (xhr.status === 200 && xhr.readyState === 4) {
           // 논리곱, 논리합
           // 요청 결과가 모두 로드 되면 시행 (onload 와 동일)
-          console.log("readyState: ", xhr.readyState);
-          console.log("State: ", xhr.State);
-          console.log(xhr.response);
-          console.log(xhr.responseText);
-          console.log(xhr.responseType);
-          console.dir(xhr);
+          //   console.log("readyState: ", xhr.readyState);
+          //   console.log("State: ", xhr.State);
+          //   console.log(xhr.response);
+          //   console.log(xhr.responseText);
+          //   console.log(xhr.responseType);
+          //   console.dir(xhr);
+
+          //   xhr에는 json 따로 지원하는 메서드나 변수 없다..
+          var todoListTxt = xhr.responseText;
+          //   console.log(todoListTxt);
+          //   console.log(eval(todoListTxt)); // 조금 옛날방식
+          //   console.dir(JSON.parse(todoListTxt));
+          //   console.log(JSON.stringify(todoListTxt));
+          var todoList = JSON.parse(todoListTxt)["todoList"];
+          var noCnt = JSON.parse(todoListTxt)["noCnt"];
+          //   console.log(todoList[0]);
+          //   console.log(noCnt);
+
+          const todoListArea = document.querySelector("#todoListArea");
+          todoList.forEach((elem) => {
+            console.log(elem);
+          });
         }
       };
 
-      var url = "data.xml";
+      var url = "todoList.json";
       var method = "GET";
       xhr.open(method, url);
 
