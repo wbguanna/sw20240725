@@ -1,67 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>JavaScript Data Types Example</title>
   </head>
   <body>
     <script>
-      // 자바 스크립트 변수에 담을 수 있는 것들.
-      // 변수에는 string, number, object, 배열, 함수 등
-      // 거의 모든 요소를 대입 할 수 있다.
-      // 자바스크립트에서 브라우저의 모든 요소는 객체 취급.
-      // 객체를 직접 변수에 담는것이 아니라 객체의 참조(주소)
+      // 원시 타입
+      let numValue = 10;
+      let stringValue = "Hello, ES6!";
+      let boolValue = true;
+      let nullValue = null;
+      let undefinedValue;
+      let symbolValue = Symbol("unique");
 
-      var num1 = 1004;
-      console.log(num1);
-      console.log(typeof num1);
+      // (Array) 객체 타입 (배열)
+      // js 의 Array는 컬렉션에 가깝다...
+      // set, map, list 처럼 사용가능...
+      let arrValue = [1, 2, 3, 4, 5];
 
-      // 변수에 어떤 데이터 타입이든 대입 가능하다.
-      num1 = "숫자 100";
-      console.log(num1);
-      console.log(typeof num1);
+      // (Object) 객체 타입 (객체) (맵과 비슷한 구조, Array의 연관배열과 비슷)
+      let objValue = {
+        name: "Alice",
+        age: 25,
+        isStudent: true,
+      };
+      objValue.name;
+      objValue["name"]; // 연관배열로 출력
 
-      var obj = new Object();
-      obj.name = "kim";
-      obj.job = "교수";
-      console.dir(obj);
-      console.log(typeof obj);
-
-      // 객체를 리터럴로 사용
-      var obj2 = { job: "도둑", name: "홍길동" };
-      obj2.address = "서울 종로구";
-      console.log(obj2);
-      console.log(typeof obj2);
-
-      // 배열로 초기화
-      var arr = new Array();
-      var arr2 = [100, 200, 303]; // 권장 방식
-      console.log(typeof arr);
-      console.log(arr2);
-      arr2[1] = 1004;
-      console.log(arr2[0], arr2[1], arr2[2]);
-
-      // 중요: 한국의 프로그래머에게 자바는 필수!!
-
-      // 자바스크립트에서 함수 선언 방법
-      // 관례상 변수는 명사로 시작.
-      // 함수는 기능이므로 함수 이름은 동사로 시작한다.
-      // 함수나 변수는 이름을 소문자로 시작하고 클래스는 대문자로 시작.
-      // 상수는 모두 대문자
-      const MY_NAME = "홍길동";
-      // MY_NAME = "aaa";
-      // 함수를 선언
-      function sayHello(no) {
-        console.log("Hello", MY_NAME, no);
+      // 객체 타입 (함수)
+      function greet(name) {
+        console.log("Hello, " + name + "!");
       }
-      // 함수를 호출
-      sayHello(1);
 
-      // 함수명에 괄호를 붙이는건 실행하라는 의미.
-      // 함수의 이름만 사용 할때는 괄호를 사용하지 않는다.
-      var sayHelloRef = sayHello;
-      sayHelloRef(2);
+      // 객체 타입 (날짜)
+      let currentDate = new Date();
+
+      // 값 출력
+      console.log("Number:", numValue);
+      console.log("String:", stringValue);
+      console.log("Boolean:", boolValue);
+      console.log("Null:", nullValue);
+      console.log("Undefined:", undefinedValue);
+      console.log("Symbol:", symbolValue);
+      console.log("Array:", arrValue);
+      console.log("Object:", objValue);
+      greet(objValue.name);
+      console.log("Date:", currentDate);
     </script>
   </body>
 </html>
