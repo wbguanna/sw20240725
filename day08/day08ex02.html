@@ -8,11 +8,22 @@
   <body>
     <script>
       // 전역 변수
+      // let 선언은 자바에서의 변수 개념과 유사하다.
       let globalName = "홍길동";
-      var aaaa = "aaa";
-      var aaaa = "aaa";
+      // var는 특정 객체의 멤버 속성으로 추가된다.
+      var aaa = "aaa";
+      var aaa = "var로 중복 선언 가능";
 
       function test() {
+        // let으로 선언 하면 블럭단위 scope
+        let globalName = "test함수의 지역변수";
+        // 함수 내부에서 var aaa="" 로 다시 선언 하면
+        // 외부에 선언한 변수 접근 하지 못함.
+        // var나 function은 함수 단위의 scope이다.
+        // 자바스크립트는 인터프리터 언어: 위치 중요.
+        console.log(aaa);
+        var aaa = "aaa2";
+
         console.log("test 함수 호출 됨 ...");
         console.log("test에서 globalName:", globalName);
 
@@ -29,7 +40,7 @@
         window.bbb = "bbb";
       }
       // 호출 하지 않은 함수는 실행 하지 않음.
-      //   test();
+      test();
 
       console.log("globalName:", globalName);
       // 지역변수는 블럭 외부에서 접근 못함.
@@ -39,6 +50,7 @@
 
       console.dir(window);
       console.log(bbb);
+      console.log(aaa);
     </script>
   </body>
 </html>

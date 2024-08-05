@@ -1,16 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>JavaScript Data Types Example</title>
   </head>
   <body>
     <script>
-      // 경쟁? 알빠노..
-      // 자기 페이스에 맞춘다
-      // 적성 찾다가 시간낭비한다..
-      // 무엇이든 반복하면 잘한다..ㅋㅋ // 도망치지 마라 // 차피 인생망한거 다안다..
+      // 원시 타입
+      let numValue = 10;
+      let stringValue = "Hello, ES6!";
+      let boolValue = true;
+      let nullValue = null;
+      let undefinedValue;
+      let symbolValue = Symbol("unique");
+
+      // (Array) 객체 타입 (배열)
+      // js 의 Array는 컬렉션에 가깝다...
+      // set, map, list 처럼 사용가능...
+      let arrValue = [1, 2, 3, 4, 5];
+
+      // (Object) 객체 타입 (객체) (맵과 비슷한 구조, Array의 연관배열과 비슷)
+      let objValue = {
+        name: "Alice",
+        age: 25,
+        isStudent: true,
+      };
+      objValue.name;
+      objValue["name"]; // 연관배열로 출력
+
+      // 객체 타입 (함수)
+      function greet(name) {
+        console.log("Hello, " + name + "!");
+      }
+
+      // 객체 타입 (날짜)
+      let currentDate = new Date();
+
+      // 값 출력
+      console.log("Number:", numValue);
+      console.log("String:", stringValue);
+      console.log("Boolean:", boolValue);
+      console.log("Null:", nullValue);
+      console.log("Undefined:", undefinedValue);
+      console.log("Symbol:", symbolValue);
+      console.log("Array:", arrValue);
+      console.log("Object:", objValue);
+      greet(objValue.name);
+      console.log("Date:", currentDate);
     </script>
   </body>
 </html>
