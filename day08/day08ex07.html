@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advanced JavaScript Loop Example</title>
+</head>
+<body>
+  <script>
+    // 무작위 숫자 생성 함수
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // 1부터 10까지 무작위 숫자 생성
+    let randomNumber = getRandomNumber(1, 10);
+
+    // 1부터 randomNumber 까지의 피보나치 수열
+    // 1+1+2+3+5+8+13+21=54
+    
+    var sicStr = "";
+    var total = 0;
+    
+    // 초기값
+    var prev = 0;
+    var cur = 1;
+    var next = 0
+    while(cur <= 21) {
+        sicStr += cur;
+        total += cur;
+        if(cur < 21) {
+          sicStr += "+";
+        } else {
+            sicStr += "=";
+        }
+        
+        next = prev + cur;
+        prev = cur;
+        cur = next;
+    }
+    
+    console.log(sicStr + total);
+    
+    // 출력 된 피보나치 수열의 합을 결과로 출력
+    // 결과 =54
+  </script>
+</body>
+</html>

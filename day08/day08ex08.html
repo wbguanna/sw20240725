@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p>다음에서 시스템이 만든 숫자를 선택하세요.</p>
+    <p id="status">결과: </p>
+    <div id="btns"></div>
+    
+    <script>
+        // 1보다 작은 난수 발생
+        // parseInt() 문자열로 된 숫자를 숫자로 변환 "55" ==> 55
+        // Numeric 문자열을 숫자로 변환
+        // Math.floor()는 적삭 기능(실수를 정수로 변환)
+        // 55 ~ 100 사이의 난수 발생
+        function getRandInt(min, max) {
+            return min + Math.floor( Math.random() * (max-min+1) );
+        }
+        
+        // 높다 낮다 게임
+        // 시스템이 1 ~ 100 사이의 정수를 무작위로 선택한다.
+        // 사용자가 5회 시도 안에 정수를 맞추는 게임
+
+        let min = 1;
+        let max = 100;
+        let num = getRandInt(min, max);
+        let cnt = 5;
+        console.log("num =>", num);
+
+        let btns = document.querySelector("#btns");
+        let status = document.querySelector("#status");
+
+        const resultStatus = ["", "", "", "", ""];
+        function draw() {
+            // 반복문 실행 전 요소를 초기화 해야한다.
+            btns.innerHTML = "";
+            for(let i=min; i<=max; i++) {
+                let newBtn = document.createElement("button");
+                newBtn.classList.add("btn"+i);
+                newBtn.innerText = i;
+                btns.appendChild(newBtn);
+
+                newBtn.onclick = function(e) {
+                    cnt--;
+                    let choiceNum = Number(e.target.innerText);
+                    console.log(choiceNum);
+                    // choiceNum과 num의 크기를 비교 해서 변수의 값을 변경하기
+                    // 정답인지 아닌지 체크.
+                    if(num < choiceNum) {
+                        status.innerText = resultStatus[cnt-1] = "결과: 너무 큰 숫자입니다.";
+                        max = choiceNum - 1 ;
+                    }
+                    if(num > choiceNum) {
+                        status.innerText = resultStatus[cnt-1] = "결과: 너무 작은 숫자입니다.";
+                        min = choiceNum + 1;
+                    }
+                    status.innerText += "기회는 "+cnt+"번 남았습니다!";
+                    resultStatus[cnt-1] += status.innerText;
+
+                    if(num !== choiceNum && cnt <= 0 ) {
+                        min = 1;
+                        max = 100;
+                        num = getRandInt(min, max);
+                        cnt = 5;
+                        console.log("게임 다시 실행! num =>", num);
+                        status.innerText = "결과: 게임을 다시 실행 합니다!";
+                    }
+                    if(num === choiceNum) {
+                        status.innerText = resultStatus[cnt-1] = "결과: 정답입니다^^";
+                        min = max = choiceNum;
+                    }
+                    
+                    // 함수가 함수 자신을 재귀호출 
+                    draw();
+                }
+            }
+        }
+
+        draw();
+
+        function selectAuto() {
+            let choice = getRandInt();
+            while (cnt > 0) {
+                var selectedBtn = window.document.querySelector(`.btn${choice}`);
+                selectedBtn.click()
+                if(choice < num) {
+                    max = Math.floor((choiceNum - 1) / 2) ;
+                }
+                if(choice > num) {
+                    min = Math.floor(min + (max - choiceNum + 1) / 2);
+                }
+                choice = Math.floor(min +(max - min)/2);
+            }
+        }
+    </script>
+</body>
+</html>
