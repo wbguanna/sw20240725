@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>초등학교 저학년용 계산기</h1>
+    <form action="">
+      <fieldset>
+        <legend>계산기</legend>
+        <label for=""></label>
+        <input
+          type="number"
+          id="left"
+          name="left"
+          size="2"
+          value="0"
+          min="0"
+          class="hang1"
+        />
+        <div class="errorMsg hang1"></div>
+        <select name="op" id="op">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+        </select>
+        <label for=""></label>
+        <input
+          type="number"
+          id="right"
+          name="right"
+          size="2"
+          value="0"
+          min="0"
+          class="hang2"
+        />
+        <button class="resultBtn">=</button>
+        <span class="resultArea">0</span>
+      </fieldset>
+    </form>
+    <script>
+      // getElementsByClassName() 은 리턴형이 리스트(~~배열~~, HtmlCollection) 형 <= html요소 컬렉션이라
+      //   var hang1 = document.getElementById("hang1");
+      var hang1 = document.getElementsByClassName("hang1")[0];
+      // querySelector() 류는 값으로 css 선택자를 주어야 한다.
+      var hang2 = document.querySelector(".hang2");
+      var resultBtn = document.querySelector(".resultBtn");
+      var resultArea = document.querySelector(".resultArea");
+      var oper = document.getElementById("op");
+      //   console.log(hang1);
+      //   console.log(hang2);
+      // 계산기를 직접 구현 해봅시다..
+      // 초등학교 저학용 용이니까 음수가 나오지 않게 구현해 주세요...
+
+      function handelHangChange(e) {
+        var num = e.target.value;
+        var num = parseIng(num);
+        console.log(e);
+        console.dir(e);
+        if (num < 0) {
+          showErrorMsg(e.target.className, "0과 0보다 큰 값만 입력됩니다"); //두번 세번 체크하기
+        }
+      }
+
+      function showErrorMsg(className, msg) {
+        var errorMsg = document.querySelector(".errorMsg " + className);
+        errorMsg.className += ""; // 보충하기
+        errorMsg.innerHTML = msg;
+      }
+
+      function handleResultBtnClicked(e) {
+        e.preventDefault();
+        var left = parseInt(hang1.value);
+        var right = parseInt(hang2.value);
+
+        var op = document.getElementById("op").value;
+        if (op === "+") resultArea.innerHTML = left + right;
+        if (op === "-") resultArea.innerHTML = left - right;
+        if (op === "*") resultArea.innerHTML = left * right;
+        if (op === "/") {
+          if (right === 0)
+            showErrorMsg("hang2", "나누기 할때 오른쪽 항은 0이 될수 없습니다.");
+          resultArea.innerHTML = left / right;
+        }
+      }
+
+      hang1.addEventListener("onchange", handelHangChange);
+      hang2.addEventListener("onchange", handelHangChange);
+      //   resultBtn.addEventListener("click", handleResultBtnClicked);
+      resultBtn.addEventListener("click", function (event) {
+        e.preventDefault();
+        var a = parseInt(hang1.value);
+        var b = parseInt(hang2.value);
+        var c = oper.value;
+        //        var resultValue = 0;
+        //        switch(c) {
+        //	        case '+' : resultValue = a + b; break;
+        //	        case '-' :
+        //		        if (a > b) { //swap 하는 방식으로 처리
+        //			        resultValue = a - b;
+        //		        } else {
+        //			        resultValue = b - a;
+        //		        }
+        //		        resultValue = a - b; break;
+        //	        case '*' : resultValue = a * b; break;
+        //	        case '/' : resultValue = a / b; break;
+        //		}
+
+        resultArea.innerHtml = eval(hang1.value + oper.value + hang2.val);
+        // eval 함수는 해킹의 표적이 될 수 있다..
+        // eval 함수에 파라미터에 eval 함수가 들어가서 처리될 수 있기 때문에
+        // 사용을 지양하자!
+      });
+      var form = document.getElementsByTagName("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e);
+      });
+    </script>
+  </body>
+</html>

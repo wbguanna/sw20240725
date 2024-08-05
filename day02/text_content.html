@@ -4,27 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      div {
+        display: block;
+        height: 100vh;
+      }
+      div[name="n1"] {
+        background-color: yellow;
+      }
+      div[name="n3"] {
+        background-color: yellow;
+      }
+      div[name="n2"],
+      div[name="n4"] {
+        background-color: brown;
+      }
+    </style>
   </head>
   <body>
     <h1>vsc에서는 emmet 이라는 확장기능 있음</h1>
     <hr />
-    <table border="1" ,="" width="100%">
-      <tr>
+    <table bgcolor="gray" border="1" cellspacing="1" width="100%">
+      <tr bgcolor="white">
         <td>a1</td>
         <td>a2</td>
         <td>a3</td>
         <td rowspan="3">a4</td>
       </tr>
-      <tr>
+      <tr bgcolor="white">
         <!-- <td>b1</td> -->
         <td>b2</td>
         <td>b3</td>
       </tr>
-      <tr>
+      <tr bgcolor="white">
         <!-- <td>c1</td> -->
         <td>c2</td>
         <td>c3</td>
       </tr>
     </table>
+    <hr />
+    <!-- 절대경로? -->
+    <p>
+      <a href="http://www.naver.com">네이버</a>
+      <a href="http://google.com">구글</a>
+    </p>
+    <br />
+    <!-- 상대경로 -->
+    <p>
+      <a href="../day01/hello.html">hello</a>
+    </p>
+    <p>
+      아이디 경로<br />
+      <a href="#n1">hello</a>
+    </p>
+
+    <div id="n1">N1</div>
+    <div name="n2">N2</div>
+    <div name="n3">N3</div>
+    <div id="n4">N4</div>
   </body>
 </html>

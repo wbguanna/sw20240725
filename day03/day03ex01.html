@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #demo {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+      button {
+        font-size: 16px;
+        padding: 10px;
+        margin: 5px;
+      }
+
+      .btnClicked {
+        font-size: 1000px;
+        /* position: absolute; */
+        margin: 0 auto;
+      }
+    </style>
+
+    <script>
+      /**
+       자바스크립트는 인터프리터 언어(c언어는 컴파일)
+       - 컴파일은 번역에 비유
+       - 인터프리터는 통역에 비유
+      */
+      // id값으로 태그엘리먼트를 객체로 참조.
+      // 이벤트 핸들러를 이용해서 문서의 모든 요소가 로드되면 실행
+      //   window.onload() = function (){
+      //     console.dir(window.document.body);
+      //     var demo = document.getElementById("demo");
+      //     var changeBtn = document.getElementById("changeBtn");
+      //     var resetBtn = document.getElementById("resetBtn");
+      //     console.log(demo);
+      //     console.log(changeBtn);
+      //     console.log(resetBtn);
+      //     // extenal
+
+      //     버튼에 클릭 이벤트 핸들러를 추가해서 내용이 변경 되도록 하기
+      //     changeBtn.addEventListener("click", function() {
+      //         demo.innerHTML = "버튼 클릭";
+      //     })
+      //   }
+
+
+      const hoverEvent = (e) => {
+        e.
+      }
+
+      window.onload() = function() {
+        var changeBtn = document.getElementById("changeBtn");
+
+        changeBtn.addEventListener("click", function () {
+          demo.innerHTML = "버튼 클릭";
+          //   demo.innerHTML  "<h2>버튼이 클릭되었따!!</h2>";
+          demo.className = demo.className === "" ? "btnClicked" : "";
+        });
+
+      }
+
+      window.onload = function () {
+        var changeBtn = document.getElementById("changeBtn"); // 여기 window.onload 이벤트 내부 함수의 변수로는 let 이 좋아 var이 좋아..?
+
+        changeBtn.addEventListener("click", function () {
+          demo.innerHTML = "버튼 클릭";
+          //   demo.innerHTML  "<h2>버튼이 클릭되었따!!</h2>";
+          demo.className = demo.className === "" ? "btnClicked" : "";
+        });
+
+        // querySelector() : 거진 css 에서 쓰는 선택자를 그대로 쓴다고 생각하면 편하다
+        // id는 #으로 했었제..
+        // class는 .
+        // 속성은 tag[attr=""]
+        // tag
+        var memoTxt = document.querySelector("input#memoTxt");
+
+        var demo = document.querySelector("demo");
+        var changeBtn = document.querySelector("changeBtn");
+        var resetBtn = document.querySelector("resetBtn");
+        console.log(demo);
+        console.log(changeBtn);
+        console.log(resetBtn);
+        console.log(memoTxt);
+
+        // TDD: 테스트 주도 개발 (테스트를 미리 짜놓고 하는 것) // 이건 아니긴 하지만서도.. 오류를 줄이기 위해 따로함 //테스터도 제대로 하려면 매ㅜ매우 어렵다
+      };
+    </script>
+  </head>
+  <body>
+    <h2>What Can JavaScript Do?</h2>
+
+    <p id="demo">JavaScript can change HTML content.</p>
+
+    메모: <input type="text" id="memoTxt" />
+    <button type="button" id="changeBtn">Click Me!</button>
+
+    <button type="button" id="resetBtn">Click Me!</button>
+    <script>
+      //   var demo = document.getElementById("demo");
+      //   console.log(demo);
+      // 자바스크립트는 모든것이 객체다... (일급객체?)
+      console.dir(window.document);
+      var num = 100;
+      console.log(num.valueOf()); // 어떻게 단순 숫자형에 함수를 사용가능할까..? => js는 모든것이 객체다
+    </script>
+  </body>
+</html>

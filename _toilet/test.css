@@ -1,0 +1,66 @@
+body, html {
+    font-family: Calibri, Helvetica, Arial, sans-serif;
+    font-size: 100%;
+  }
+     
+  #optList {
+    width: 100%;
+    /* background: #e5e5e5; */
+  }
+     
+  #optList ul { 
+    list-style-type: none; /* to avoid list dot */
+  }
+  
+  #optList label{
+    background-color: #297fb8; 
+    border-radius: 7px;
+    padding: 0.5em 0.7em 0.5em 1.7em; /* distance to start text at label */
+    color: white;	
+  }
+  
+  #optList li { 
+    margin: 1em 0em 1em 0em;
+    padding: 0.5em;  /* 3px ? space around the label */
+    border-radius: 7px;
+  }
+  
+  #optList input[type=checkbox] { 
+    display: none; /* to avoid checkbox */
+  }
+  
+  #optList input[type=checkbox] ~ ul { /* hidden subcategories trans=1 */
+    max-height: 0;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+  
+  #optList input[type=checkbox]:checked ~ ul { 
+    max-height: 100%;
+    max-width: 100%;
+    opacity: 1;
+    width: 90%;
+  }
+  
+  #optList input[type=checkbox] + label:before { /* pointer 25,50 trans .5 */
+    transform-origin: 25% 50%;  /* pointer */
+    border: 8px solid transparent;
+    border-width: 8px 12px;
+    border-left-color: white;
+    margin: 1px 0px 0px -20px;
+    width: 0;
+    height: 0;
+    display: inline-block;
+    text-align: center;
+    content: '';
+    position: relative;
+  }
+  
+  #optList input[type=checkbox]:checked + label:before {
+    transform: rotate(90deg);  /* pointer turn right */
+  }
+  
+  @media screen and (min-width: 800px) { body { font-size: 1.0em; }  }
+  @media screen and (min-width: 500px) { body { font-size: 1.3em; }  }
+  @media screen and (min-width: 250px) { body { font-size: 1.6em; }  } /* min-width if screen equal or greather min-width, consider */

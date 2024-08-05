@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READ</title>
+</head>
+<body>
+    <h3><%= message %></h3>
+    <h1>Saram page</h1>
+    <hr>
+    <table width="100%" border="1">
+        <tr>
+            <th>번호</th>
+            <th>성명</th>
+            <th>이메일</th>
+        </tr>
+    <% 
+        // 이 부분은 자바스크립트 문법
+        saramList.forEach(function(saram) {
+    %>
+        <tr align="center">
+            <td><%= saram.no %></td>
+            <td><a href="/saram/detail?no=<%= saram.no %>"><%= saram.name %></a></td>
+            <td><%= saram.email %></td>
+            <td><%= saram.job %></td>
+            <td><%= saram.age %></td>
+        </tr>
+    <%
+        });
+    %>
+    </table>
+</body>
+</html>

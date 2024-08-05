@@ -1,0 +1,15 @@
+{
+    "image":"mcr.microsoft.com/devcontainers/universal:2",
+    "customizations": {
+      "codespaces": {
+        "repositories": {
+          "wbguanna/sw202407-firebase": {
+            "permissions": "write-all"
+          },
+          "wbguanna/day2_playground": {
+            "permissions": "write-all"
+          }
+        }
+      }
+    }
+}
