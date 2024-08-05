@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script type="javascript"> -->
+    //<!-- html5에서 default가 js라 type 따로 안써줘도 되긴함 -->
+    <script>
+      const user = "user1";
+      const name = "김길동";
+
+      // window BOM (browser에서 사용되는 객체) 중 최상위 객체
+      console.dir(window);
+      console.log("this === window는 ", this === window);
+      console.log("this === document는 ", this === document);
+
+      // +a
+      console.log(
+        "window.document === document는 ",
+        window.document === document
+      );
+
+      // var로 선언된 변수 열거하기...
+      var admin01 = "김길동";
+      var admin02 = "이길동";
+      var admin03 = "박길동";
+      var admin04 = "홍길동";
+
+      // js 에선 연관배열이란 것을 쓸 수 있다...
+      // 배열이 아닌데 배열처럼 사용가능
+
+      // 연관배열
+      console.log("admin01 = ", admin01);
+      console.log("window.admin01 = ", window.admin01);
+      console.log("this.admin01 = ", this.admin01);
+      console.log('this["admin01"]' + this["admin01"]);
+      // 문자열 타입 + 숫자 => 문자열 타입
+      //'admin0' + 1 의 결과는 'admin01'
+      console.log("this['admin0' + 1] = " + this["admin0" + 1]);
+
+      // 반복문과 문자열 연산을 이용해 순서대로 열거하기
+      for (var i = 1; i <= 4; i++) {
+        // console.log('admin0'+i+" 의 값은 ", window['admin0' + i]);
+        // console.log(`admin0${i}의 값은 ${window[`admin0${i}`]}`);
+        console.log(`admin0${i}의 값은 `, window[`admin0${i}`]);
+      }
+
+      // var로 선언된 변수는 window의 멤버 // script 안에서 선언했으니 window에 포함
+      // 다른 객체 안에서 실행한다면 그 객체 안에서 실행이 되겠지요...?
+
+      function aMyFn() {
+        console.log("myFunction 실행");
+      }
+
+      //JS ES06 버전이후 class 키워드 사용가능
+      class MyCls {
+        fn00() {
+          console.log(this);
+        }
+        fn01() {
+          var aClsName = "마이 클래스";
+          this.aClsName = "이게 진짜 마이클래스";
+          console.log("MyCls의 fn01() 함수에서의 this는? ", this); // 결과는 MyCls{}
+          console.log(window);
+        }
+      }
+
+      let test = new MyCls();
+      test.fn00();
+      test.aClsName;
+      //   test.fn01();
+      test.aClsName;
+    </script>
+  </body>
+</html>
