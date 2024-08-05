@@ -26,13 +26,48 @@
 
 <script>
     //var form = document.querySelector("form[name=inputForm]");
-    let form = document.forms[0]; // Old한 방식으로 비추천
+    let form = document.forms[0]; // Old한 방식으로 비추천 // HTML 요소 직접 참조
     let resultBox = document.querySelector("#resultBox"); // CSS 선택기를 그대로 사용 가능.
     
     form.onsubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); //폼 이벤트 전파 방지; 다른페이지 넘어가지 못하도록
 
-        
+        console.log(e);
+        let age = Number(e.target.age.value); // 이벤트 동작시 submitEvent의 target ref로 데이터 값가져와 숫자로 변환
+        let message = age > 18 ? "성인" : "미성년자"; // 삼항연산자 사용 // if문 대신해 간결하게
+
+        let dayOfWeek;
+
+        switch (dayOfWeek) { //switch 문 이용해 if-elif 구조 대신 처리시간 동일하게
+            case 1:
+                dayName = "일요일";
+                break;
+            case 2:
+                dayName = "월요일";
+                break;
+            case 3:
+                dayName = "화요일";
+                break;
+            case 4:
+                dayName = "수요일";
+                break;
+            case 5:
+                dayName = "목요일";
+                break;
+            case 6:
+                dayName = "금요일";
+                break;
+            case 7:
+                dayName = "토요일";
+                break;
+            default:
+                dayName = "잘못된 값";
+        }
+
+        // 백틱을 이용해 간결하고 innerHTML에 바로 넣기
+        resultBox.innerHTML = `결과: ${age}세는 ${message}입니다. 오늘은 ${dayName}입니다.`;
+
+
     }
 </script>
 </body>
