@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 전역 변수
+      let globalName = "홍길동";
+      var aaaa = "aaa";
+      var aaaa = "aaa";
+
+      function test() {
+        console.log("test 함수 호출 됨 ...");
+        console.log("test에서 globalName:", globalName);
+
+        // 지역 변수
+        let localName = "아부지";
+        console.log("test에서 localName:", localName);
+
+        // 함수 내부에서 var로 선언하면 지역성을 갖지만
+        // 외부에서 window.userName 형식으로 접근 가능.
+        // var 없이 변수를 사용하면 지역성 갖지 않음.
+        //var userName = "이순신";
+        window.userName = "강감찬";
+        //var bbb = "bbb";
+        window.bbb = "bbb";
+      }
+      // 호출 하지 않은 함수는 실행 하지 않음.
+      //   test();
+
+      console.log("globalName:", globalName);
+      // 지역변수는 블럭 외부에서 접근 못함.
+      // let으로 선언한 변수는 지역성을 갖는다.
+      //console.log("test 외부에서 localName:" +  localName);
+      console.log("외부에서 userName:" + userName);
+
+      console.dir(window);
+      console.log(bbb);
+    </script>
+  </body>
+</html>
