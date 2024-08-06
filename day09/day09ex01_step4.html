@@ -30,7 +30,7 @@
         { no: 104, title: "hello4", done: false },
       ];
       var todoSeq = 105;
-      function myFindIdx(todo) {
+      function myFindIdx(todoList, todo) {
         return todoList.findIndex(function (t) {
           return t.no === todo.no;
         });
@@ -59,14 +59,14 @@
             //   return t.no === todo.no;
             // });
 
-            var idx = myFindIdx();
+            var idx = myFindIdx(todoList, todo);
             if (idx != -1) {
               todoList.splice(idx, 1);
               drawList();
             }
           });
           checkBox.addEventListener("change", function (e) {
-            var idx = myFindIdx();
+            var idx = myFindIdx(todoList, todo);
             if (idx != -1) {
               todoList[idx].done = !todoList[idx].done;
               drawList();
