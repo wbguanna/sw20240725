@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const todoList = [{ id: 1, name: "Buy milk", done: false }];
+      let cnt = 2;
+    </script>
+  </head>
+  <body>
+    <h1>할 일 입력</h1>
+    <p>
+      할일 :
+      <input
+        class="title"
+        value=""
+        placeholder="할일을 입력해 주세요"
+        id="input_todo"
+      />
+      <button id="saveBtn">저장</button>
+    </p>
+    <ul class="resultArea"></ul>
+
+    <script>
+      var title = document.querySelector(".title");
+      var saveBtn = document.querySelector("#saveBtn");
+
+      console.log(title);
+      console.log(saveBtn);
+
+      //할일 삭제 기능이 가능하도록 Array활용...
+      function drawTodos() {}
+
+      // 추가기능 (Array에 추가하기..)
+      function appendTodo() {
+        var listArea = document.querySelector(".resultArea");
+        listArea.innerHTML += `<li class="todo">${title.value}</li>`;
+        title.value = "";
+        title.focus();
+      }
+
+      //삭제기능
+      function deleteTodo() {}
+
+      saveBtn.onclick = function () {
+        appendTodo();
+      };
+
+      title.onkeydown = function (e) {
+        if (e.keyCode === 13) {
+          appendTodo();
+        }
+      };
+    </script>
+  </body>
+</html>

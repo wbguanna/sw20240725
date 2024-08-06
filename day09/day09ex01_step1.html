@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>할 일 입력</h1>
+    <p>할일 :</p>
+    <ul class="todoList"></ul>
+
+    <script>
+      var title = document.querySelector(".title");
+      var saveBtn = document.querySelector("#saveBtn");
+
+      console.log(title);
+      console.log(saveBtn);
+
+      function appendTodo() {
+        var listArea = document.querySelector(".resultArea");
+        listArea.innerHTML += `<li class="todo">${title.value}</li>`;
+      }
+      saveBtn.onclick = function () {
+        appendTodo();
+      };
+
+      title.onkeydown = function (e) {
+        if (e.keyCode === 13) {
+          appendTodo();
+        }
+      };
+    </script>
+  </body>
+</html>
