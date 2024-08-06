@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 1px solid navy;
+      }
+      ul,
+      li {
+        list-style: none;
+      }
+
+      #pazingo {
+        display: block;
+        width: 500px;
+        height: 280px;
+      }
+
+      .slot {
+        border: 1px solid red;
+        display: block;
+        width: 150px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>햄버거하우스 게임</h1>
+    <div id="pazingo">
+      <!-- <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul> -->
+    </div>
+    <script>
+      // 자신감과 성취감이 일을 하게한다..
+      // 노는거임 나는일하는게 아니다..
+      const divBox = document.querySelector("#slot1");
+      console.dir(divBox); // HTMLDivElement
+      function Slot() {}
+      Slot.prototype = Object.create(HTMLDivElement.prototype);
+      Slot.prototype.constructor = Slot;
+      Slot.prototype.init = function (text) {
+        const newSlot = document.createElement("Slot");
+        newSlot.innerText = text;
+        newSlot.setAttribute("class", "slot");
+        return newSlot;
+      };
+
+      // const newSlot = document.create
+      // const newSlot = new Slot().init("햄버거");
+      // console.log(newSlot);
+
+      const pazingo = document.querySelector("#pazingo");
+      // pazingo.appendChild(newSlot);
+
+      for (let i = 0; i < 10; i++) {
+        var newSlot = new Slot().init("햄버거");
+        pazingo.appendChild(newSlot);
+      }
+    </script>
+  </body>
+</html>

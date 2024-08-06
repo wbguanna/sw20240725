@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 다른 언어에서 클래스 생성...
+        * 자바
+        class 클래스명 {
+            생성자() {
+
+            }
+        }
+
+        *  파이썬
+        class 클래스명:
+            def __init__(self):
+        ******/
+
+      // 옛날 방식의 클래스 선언(function 생성자 만들기)
+      function People(name, age) {
+        this.name = name;
+        this.age = age;
+
+        function showInfo() {
+          // 옛날에는 안에다가 안만들었음 // 내부에 메서드를 선언한 것은 비추
+          // 내부에 선언 하면 모든 객체?에 소스가 복제된다..
+          // so, prototye에 메서드 선언하는 것을 추천...
+        }
+      }
+      People.prototype.display = function () {
+        // console.log(name, age); // 이러면 출력될까? // no
+        console.log(this.name, this.age); // yes
+        // 멤버메서드에서 멤버 속성을 접근하기위해 this 필수..
+      };
+
+      const myPeople = new People("ljw", 13);
+      myPeople.display();
+
+      // People 상속 받아서 다른 클래스 선언
+      // 옛날 방식은 prototype을 이용한 상속
+      // prototype
+
+      // 상속? // 생성자는 상속 안된다 // prototype을 공유하는 개념..
+      function Student(name, age, grade) {
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+      }
+      Student.prototype = new People(); // 프로토타입을 부모의 객체로 쓴다..
+      Student.constructor = Student; // 생성자는 Student 함수 자체를 넣어준다.
+
+      Student.prototype.display = function () {
+        People.prototype.display.call(this); // __self__ 같은 느낌?
+        console.log(this.grade, "학년");
+      };
+
+      const student1 = new Student("일지환", 22, 3);
+      const student2 = new Student("이지환", 26, 4);
+      student1.display();
+      student2.display();
+
+      // ES6 에서 클래스 선언
+      class 클래스명 {
+        constructor() {
+          this.속성1 = "값";
+          this.속성2 = "값";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -11,13 +11,18 @@
     <script>
       // ES6 화살표 함수로 짝수만 추출하는 함수 정의
       // https://www.w3schools.com/js/js_array_iteration.asp#mark_filter
-      Array.prototype.extractEvenNumbers = () => {
+
+      Array.prototype.extractEvenArray = () => {
+        console.dir(this);
         if (this.length != 0) return -1;
         const evenNumbers = this.filter((num) => num % 2 === 0);
         return evenNumbers;
       };
 
-      // 입력 배열
+      Array.prototype.extractOddArray = function () {
+        const evenNumber = this.filter((num) => num % 2 !== 0);
+        return;
+      };
 
       Array.prototype.print = function (data, mode) {
         // 굳이 이렇게 할필요가 있을까..?
@@ -36,22 +41,18 @@
         }
       };
 
-      Array.prototype.extractOddArray = function () {
-        console.log(this);
-        const evenNumber = this.filter((num) => num % 2 !== 0);
-        return;
-      };
-
+      // 입력 배열
       const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
       // 함수 호출하여 짝수 추출
-      const evenArray = extractEvenNumbers(numbers);
+      const evenArray = numbers.extractEvenArray(numbers);
       var oddArray = numbers.extractOddArray();
-      console.log("입력 배열:", numbers);
-      console.log("짝수 배열:", evenArray);
+      // console.log("입력 배열:", numbers);
+      // console.log("짝수 배열:", evenArray);
+      // console.log("홀수 배열:", oddArray);
 
-      print(evenArray, 1);
-      print(oddArray, 1);
+      oddArray.print(1);
+      evenArray.print(1);
     </script>
   </body>
 </html>

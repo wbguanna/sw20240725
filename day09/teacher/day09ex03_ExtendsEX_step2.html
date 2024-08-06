@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Animal(name, sound) {
+        this.name = name;
+        this.sound = sound;
+      }
+      Animal.prototype.mkSound = function () {
+        console.log(`${this.name}이(가) ${this.sound}소리를 내며 운다`);
+      };
+
+      // 실습: Animal을 상속 받은 Dog과 Cat을 구현 하세요.
+
+      function Dog(name, sound, age) {
+        Animal.call(this, name, sound);
+        this.age = age;
+      }
+      Dog.prototype = Object.create(Animal.prototype);
+      Dog.prototype.constructor = Dog;
+      Dog.prototype.mkSound = function () {
+        Animal.prototype.mkSound.call(this);
+        console.log(this.age + "살");
+      };
+
+      new Dog("해피", "깽깽", 12).mkSound();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Animal(name, sound) {
+        this.name = name;
+        this.sound = sound;
+      }
+
+      Animal.prototype.mkSound = function () {
+        console.log(`${this.name}이(가) ${this.sound}소리를 내며 운다`); // 포키몬
+      };
+
+      // 실습: Animal을 상속받은 Dog과 Cat을 구현 하세요...
+      function Dog(name, sound, age) {
+        // this.name = name;
+
+        if (!sound || sound.trim() === "") sound = "왈왈";
+        Animal.call(this, name, sound);
+        this.age = age;
+      }
+
+      function Cat(name, sound) {
+        this.name = name;
+
+        if (!sound || sound.trim() === "")
+          this.sound = "냥 이치 니 산 아리가또~";
+        else this.sound = sound;
+      }
+
+      Dog.prototype.mkSound = function () {
+        Animal.prototype.mkSound.call(this);
+        console.log(this.age);
+      };
+
+      Cat.prototype.mkSound = function () {
+        Animal.prototype.mkSound.call(this);
+      };
+
+      Dog.prototype = Object.create(Animal.prototype);
+      Dog.prototype.constructor = Dog;
+
+      const dog = new Dog("이지환");
+      const cat = new Cat("asdf");
+      dog.mkSound();
+      cat.mkSound();
+
+      const animals = [
+        new Dog("해피", "멍멍", 10),
+        new Cat("나비", "야옹", 9),
+        new Dog("메리", "왈왈", 10),
+        new Cat("네로", "미야옹", 3),
+        new Cat("네꼬", "에노", 5),
+      ];
+
+      animals.forEach(function (ani) {
+        ani.mkSound();
+      });
+    </script>
+  </body>
+</html>
