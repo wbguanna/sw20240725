@@ -13,7 +13,7 @@
   <body>
     <h1>Todo List</h1>
     <p>
-      할일: <input type="text" class="title" id="input_todo" />
+      할일: <input type="text" class="title" />
       <button id="saveBtn">SAVE</button>
     </p>
     <ul class="resultArea"></ul>
@@ -26,15 +26,18 @@
       var todoList = [
         { no: 101, title: "hello", done: false },
         { no: 102, title: "hello2", done: true },
-        { no: 103, title: "hello3", done: false },
+        { no: 103, title: "hello3", done: true },
         { no: 104, title: "hello4", done: false },
       ];
       var todoSeq = 105;
-      function myFindIdx(todo) {
-        return todoList.findIndex(function (t) {
+
+      function myFindIdx(todoList, todo) {
+        var idx = todoList.findIndex(function (t) {
           return t.no === todo.no;
         });
+        return idx;
       }
+
       function drawList() {
         var listArea = document.querySelector(".resultArea");
         listArea.innerHTML = "";
@@ -46,27 +49,24 @@
 
           liTag.style.listStyle = "none";
           checkBox.setAttribute("type", "checkbox");
+          spanTag.setAttribute("class", "");
           checkBox.removeAttribute("checked");
           if (todo.done) {
             checkBox.setAttribute("checked", "checked");
-            spanTag.classList.add("okTitle");
+            spanTag.setAttribute("class", "okTitle");
           }
-
           spanTag.innerHTML = todo.title + " ";
           delBtn.innerText = "Delete";
-          delBtn.addEventListener("click", function (event) {
-            // var idx = todoList.findIndex(function (t) {
-            //   return t.no === todo.no;
-            // });
 
-            var idx = myFindIdx();
+          delBtn.addEventListener("click", function (event) {
+            var idx = myFindIdx(todoList, todo);
             if (idx != -1) {
               todoList.splice(idx, 1);
               drawList();
             }
           });
-          checkBox.addEventListener("change", function (e) {
-            var idx = myFindIdx();
+          checkBox.addEventListener("change", function (event) {
+            var idx = myFindIdx(todoList, todo);
             if (idx != -1) {
               todoList[idx].done = !todoList[idx].done;
               drawList();

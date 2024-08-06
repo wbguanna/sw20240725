@@ -4,16 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      span.okTitle {
-        text-decoration: line-through;
-      }
-    </style>
   </head>
   <body>
     <h1>Todo List</h1>
     <p>
-      할일: <input type="text" class="title" id="input_todo" />
+      할일: <input type="text" class="title" />
       <button id="saveBtn">SAVE</button>
     </p>
     <ul class="resultArea"></ul>
@@ -25,16 +20,11 @@
       // 할 일 삭제 기능이 가능하도록 Array를 활용 한다.
       var todoList = [
         { no: 101, title: "hello", done: false },
-        { no: 102, title: "hello2", done: true },
+        { no: 102, title: "hello2", done: false },
         { no: 103, title: "hello3", done: false },
         { no: 104, title: "hello4", done: false },
       ];
       var todoSeq = 105;
-      function myFindIdx(todo) {
-        return todoList.findIndex(function (t) {
-          return t.no === todo.no;
-        });
-      }
       function drawList() {
         var listArea = document.querySelector(".resultArea");
         listArea.innerHTML = "";
@@ -46,29 +36,14 @@
 
           liTag.style.listStyle = "none";
           checkBox.setAttribute("type", "checkbox");
-          checkBox.removeAttribute("checked");
-          if (todo.done) {
-            checkBox.setAttribute("checked", "checked");
-            spanTag.classList.add("okTitle");
-          }
-
           spanTag.innerHTML = todo.title + " ";
           delBtn.innerText = "Delete";
           delBtn.addEventListener("click", function (event) {
-            // var idx = todoList.findIndex(function (t) {
-            //   return t.no === todo.no;
-            // });
-
-            var idx = myFindIdx();
+            var idx = todoList.findIndex(function (t) {
+              return t.no === todo.no;
+            });
             if (idx != -1) {
               todoList.splice(idx, 1);
-              drawList();
-            }
-          });
-          checkBox.addEventListener("change", function (e) {
-            var idx = myFindIdx();
-            if (idx != -1) {
-              todoList[idx].done = !todoList[idx].done;
               drawList();
             }
           });

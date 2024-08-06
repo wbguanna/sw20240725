@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>할 일 입력</h1>
+    <p>
+      할일: <input type="text" class="title" />
+      <button id="saveBtn">SAVE</button>
+    </p>
+    <p class="resultArea">결과:</p>
+
+    <script>
+      // CSS 셀렉터를 이용해서 DOM 참조
+      // https://www.w3schools.com/jsref/met_element_queryselector.asp
+      // querySelectALL은 여러개를 List형태로 가져온다.
+      var title = document.querySelector(".title");
+      var saveBtn = document.querySelector("#saveBtn");
+      // 확인
+      console.log(title);
+      console.dir(saveBtn);
+      // 버튼 이벤트 핸들러
+      // 익명함수로 이벤트 핸들러 만들기
+      saveBtn.onclick = function () {
+        console.log("저장 버튼 눌렀다!", title.value);
+        document.querySelector(
+          ".resultArea"
+        ).innerHTML += `<p>${title.value}</p>`;
+      };
+
+      // 키 이벤트 사용하기
+      title.onkeydown = function (e) {
+        if (e.keyCode === 13) {
+          document.querySelector(
+            ".resultArea"
+          ).innerHTML += `<p>${title.value}</p>`;
+        }
+      };
+    </script>
+  </body>
+</html>
