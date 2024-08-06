@@ -20,3 +20,7 @@ todoList는 로컬로도 충분하다..
 그리고 동기화를 시켜주어야 한다고 생각해 사용자 연동이 필요할 것 같다..
     - 참고하기 : https://mong-blog.tistory.com/entry/JS-localStorage%EB%9E%80feat-%EC%9E%98-%EC%93%B0%EB%8A%94-%ED%8C%81#google_vignette
 
+
+##### day09
+    - todo drawList 전부 새로 그리지 말고 부분만 따로 찾아그리기..
+    - no 순서대로 바꾸기..
