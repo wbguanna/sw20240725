@@ -97,6 +97,9 @@
         this.start();
         return this.newSlot;
       };
+
+      let speed = 15.75;
+      const SlotContainer = [new Slot(), new Slot(), new Slot()];
       Slot.prototype.start = function () {
         this.elementUl.style.position = "absolute";
         this.elementUl.style.left = "0px";
@@ -109,11 +112,17 @@
           console.log(this);
           this.elementUl.style.top = this.y + "px";
           // clearInterval(this.intervalRef);
-          if (this.y <= -900) {
+          if (this.y <= -1350) {
             // clearInterval(this.intervalRef);
             this.y = 0;
           }
-        }, 30);
+        }, speed);
+      };
+
+      Slot.prototype.stop = function () {
+        clearInterval(this.intervalRef);
+        console.log(Math.floor(this.y / 100) * 100);
+        this.elementUl.style.top = Math.floor(this.y / 100) * 100 + "px";
       };
 
       // const newSlot = document.createElement("Slot");
