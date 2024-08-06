@@ -23,14 +23,21 @@
       var title = document.querySelector(".title");
 
       // 할 일 삭제 기능이 가능하도록 Array를 활용 한다.
-      var todoList = [
+      const todoList = [
         { no: 101, title: "hello", done: false },
         { no: 102, title: "hello2", done: true },
         { no: 103, title: "hello3", done: false },
         { no: 104, title: "hello4", done: false },
       ];
+
+      const deletedTodoList = [];
       var todoSeq = 105;
       function myFindIdx(todoList, todo) {
+        if (!todo) {
+          console.log(todo);
+          return;
+        }
+
         return todoList.findIndex(function (t) {
           return t.no === todo.no;
         });
@@ -42,6 +49,7 @@
         var spanTag = document.createElement("span");
 
         liTag.style.listStyle = "none";
+
         checkBox.setAttribute("type", "checkbox");
         checkBox.removeAttribute("checked");
         if (todo.done) {
@@ -54,15 +62,15 @@
         delBtn.addEventListener("click", function (event) {
           var idx = myFindIdx(todoList, todo);
           if (idx != -1) {
+            drawList(2);
             todoList.splice(idx, 1);
-            drawList();
           }
         });
-        checkBox.addEventListener("change", function (e) {
+        checkBox.addEventListener("change", function (event) {
           var idx = myFindIdx(todoList, todo);
           if (idx != -1) {
             todoList[idx].done = !todoList[idx].done;
-            drawList();
+            drawList(3);
           }
         });
 
@@ -72,30 +80,47 @@
         return liTag;
       } // End of createLiTag
 
-      var listArea = document.querySelector(".resultArea");
-      function drawList() {
-        listArea.innerHTML = "";
-        todoList.forEach(function (todo) {
-          listArea.appendChild(createLiTag(todo));
-        });
-      }
-
-      //
-      // function drawList(mode) {
-      //   switch (mode) {
-      //     case 0: //init
-      //       drawList(); // 자바스크립트는 메소드 오버로딩 기능이 없다ㅋㅋ
-      //       break;
-      //     case 1: // 할일 추가
-      //       listArea.appendChild(createLiTag(todoList[todoList.length - 1]));
-      //       break;
-      //     case 2: // 할일 삭제
-      //       // todo no 정렬 및 카운트 초기화?
-      //       break;
-      //   }
+      // var listArea = document.querySelector(".resultArea");
+      // function drawList() {
+      //   listArea.innerHTML = "";
+      //   todoList.forEach(function (todo) {
+      //     listArea.appendChild(createLiTag(todo));
+      //   });
       // }
 
-      drawList();
+      //
+      function drawList(mode, todo) {
+        var listArea = document.querySelector(".resultArea");
+        var trgElem = listArea.querySelector(`li:nth-of-type(${idx}) > span`);
+        switch (mode) {
+          case 0: //init
+            // drawList(); // 자바스크립트는 메소드 오버로딩 기능이 없다ㅋㅋ
+            listArea.innerHTML = "";
+            todoList.forEach(function (todo) {
+              listArea.appendChild(createLiTag(todo));
+            });
+            break;
+          case 1: // 할일 추가
+            listArea.appendChild(createLiTag(todoList[todoList.length - 1]));
+            break;
+          case 2: // 할일 삭제
+            // todo no 정렬 및 카운트 초기화?
+            var idx = myFindIdx(todoList, todo);
+            var trgElem = listArea.querySelector(`:nth-child(${idx})`);
+            listArea.removeChild(trgElem);
+            break;
+          case 3:
+            var idx = myFindIdx(todoList, todo);
+            var trgElem = listArea.querySelector(`li:nth-of-type(${idx})>span`);
+            trgElem.classList.toggle("okTitle"); //node
+            break;
+          default:
+            console.log("no mode error");
+            break;
+        }
+      }
+
+      drawList(0);
 
       // Array에 새 할 일 추가
       function append() {
@@ -104,7 +129,7 @@
           title: title.value,
           done: false,
         });
-        drawList();
+        drawList(1);
         title.value = "";
         title.focus();
       }
