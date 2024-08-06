@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-      const todoList = [{ id: 1, name: "Buy milk", done: false }];
+      const todoList = [
+        { id: 1, title: "Buy milk", done: false },
+        { id: 2, title: "Do Record", done: false },
+        { id: 3, title: "Go home", done: false },
+      ];
       let cnt = 2;
     </script>
   </head>
@@ -26,17 +30,44 @@
     <script>
       var title = document.querySelector(".title");
       var saveBtn = document.querySelector("#saveBtn");
+      var listArea = document.querySelector(".resultArea");
 
       console.log(title);
       console.log(saveBtn);
 
       //할일 삭제 기능이 가능하도록 Array활용...
-      function drawTodos() {}
+      function drawTodos() {
+        var listArea = document.querySelector(".resultArea");
+        listArea.innerHTML = "";
+        // listArea.innerHTML += `<li class="todo">${title.value}</li>`;
+
+        todoList.forEach(function (todo) {
+          var liTag = document.createElement("li");
+          var delBtn = document.createElement("button");
+          delBtn.innerText = "삭제";
+          delBtn.addEventListener("click", function (e) {
+            var idx = todoList.findIndex(function (t) {
+              return t.no === todo.no;
+            });
+            if (idx != -1) {
+              todoList.splice(idx, 1);
+              drawTodos();
+            }
+            console.log("clicked");
+          });
+          liTag.classList.toggle("todo");
+          liTag.innerText = todo.title;
+          liTag.appendChild(delBtn);
+          listArea.appendChild(liTag);
+        });
+      }
 
       // 추가기능 (Array에 추가하기..)
       function appendTodo() {
-        var listArea = document.querySelector(".resultArea");
-        listArea.innerHTML += `<li class="todo">${title.value}</li>`;
+        if (title.value.trim() === "") return; // 김태현씨 코드
+
+        todoList.push({ no: cnt++, title: title.value, done: false });
+        drawTodos();
         title.value = "";
         title.focus();
       }
@@ -53,6 +84,8 @@
           appendTodo();
         }
       };
+
+      drawTodos();
     </script>
   </body>
 </html>
