@@ -129,22 +129,27 @@
       }
 
       function selectAuto() {
-        getRandInt(min, max);
-        let choice = getRandInt(min, max);
+        let innerMin = min,
+          innerMax = max;
+        getRandInt(innerMin, innerMax);
+        let choice = getRandInt(innerMin, innerMax);
         let selectedBtn;
         while (cnt > 0) {
+          console.log("computer selected number : " + choice);
           // alert(choice);
-          window.document.querySelector(`.btn${choice}`).click();
+          window.document.getElementsByClassName(`btn${choice}`)[0].click();
           //   console.log(selectedBtn);
           //   selectedBtn.onclick();
           if (choice < num) {
-            max = Math.floor((choice - 1) / 2);
+            innerMin = Math.min(choice + 1, 100);
           }
           if (choice > num) {
-            min = Math.floor(min + (max - choice + 1) / 2);
+            innerMax = Math.max(choice - 1, 0);
           }
-          getRandInt(min, max);
-          choice = getRandInt(min, max);
+          // getRandInt(innerMin, innerMax);
+          // choice = getRandInt(innerMin, innerMax);
+          // choice = innerMin + (innerMax - innerMin) / 2;
+          choice = (innerMin + innerMax) / 2;
         }
       }
 
