@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+
+    <script>
+      //밑에 두면 DOM 로딩 기다릴 필요 x
+      // $(document).ready(function() {}) 축약형태..
+      $(function () {
+        alert("helll");
+        console.log(this);
+      });
+
+      $(() => {
+        console.log(this);
+        // 참조  // #보충하기 : https://velog.io/@padoling/JavaScript-%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98%EC%99%80-this-%EB%B0%94%EC%9D%B8%EB%94%A9
+      });
+    </script>
+  </body>
+</html>

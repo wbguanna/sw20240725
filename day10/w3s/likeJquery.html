@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #btn {
+        position: relative;
+        left: 0px;
+        transition: left 0.5s ease;
+      }
+    </style>
+
+    <script>
+      const $ = function (selector) {
+        const dom = document.querySelector(selector);
+
+        dom.color = function (newColor) {
+          this.style.color = newColor;
+          return dom;
+        };
+
+        dom.click = function (callback) {
+          this.callback = callback;
+          this.onclick = this.callback;
+          return dom;
+        };
+
+        dom.posx = function (x) {
+          this.style.left = x + "px";
+          return dom;
+        };
+
+        dom.posy = function (y) {
+          this.style.top = y + "px";
+          return dom;
+        };
+
+        // 메서드 체인 기능을 위해 반환 한다.
+        return dom;
+      };
+
+      //var $btn = $("#btn");
+      //console.log($btn);
+
+      window.onload = function () {
+        $("#btn")
+          .color("red")
+          .click(function (evt) {
+            console.log("click 했다!");
+            this.style.backgroundColor = "yellow";
+            this.style.left = 500 + "px";
+          })
+          .posx(100)
+          .posy(50);
+      };
+    </script>
+  </head>
+  <body>
+    <button id="btn">Click me</button>
+  </body>
+</html>
