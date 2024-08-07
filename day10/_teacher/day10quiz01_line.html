@@ -101,6 +101,18 @@
     </div>
 
     <script>
+      const isStart = [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ];
+
       function Box() {}
       Box.prototype.init = function (text) {
         this.cellBox = document.createElement("div");
@@ -115,12 +127,13 @@
         return this.cellBox;
       };
       Box.prototype.start = function (speed) {
+        console.log(this);
         this.y = 0;
         this.intervalRef = setInterval(() => {
           this.y -= 10;
           this.elementUl.style.top = this.y + "px";
-          if (this.y <= -900) {
-            this.y = 0;
+          if (this.y <= -800) {
+            this.y = -600;
           }
         }, speed);
       };
@@ -158,29 +171,85 @@
         boxArr.forEach(function (box) {
           box.start(Math.floor(5 + Math.random() * 20));
         });
+        document.querySelector("#line1").style.display = "none";
+        document.querySelector("#line2").style.display = "none";
+        document.querySelector("#line3").style.display = "none";
+        document.querySelector("#line4").style.display = "none";
+        document.querySelector("#line5").style.display = "none";
+        document.querySelector("#line6").style.display = "none";
+        document.querySelector("#line7").style.display = "none";
+        document.querySelector("#line8").style.display = "none";
       });
       stopBtn.addEventListener("click", function (event) {
         metrixArr[0][0].stop();
         metrixArr[0][1].stop();
         metrixArr[0][2].stop();
-        document.querySelector("#line1").style.display = "block";
-        console.log(
-          metrixArr[0][0].yPos,
-          metrixArr[0][1].yPos,
-          metrixArr[0][2].yPos
-        );
         setTimeout(function () {
           metrixArr[1][0].stop();
           metrixArr[1][1].stop();
           metrixArr[1][2].stop();
-          document.querySelector("#line2").style.display = "block";
         }, 500);
         setTimeout(function () {
           metrixArr[2][0].stop();
           metrixArr[2][1].stop();
           metrixArr[2][2].stop();
-          document.querySelector("#line3").style.display = "block";
         }, 1000);
+        setTimeout(function () {
+          console.log(
+            metrixArr[0][0].yPos,
+            metrixArr[0][1].yPos,
+            metrixArr[0][2].yPos
+          );
+          if (
+            metrixArr[0][0].yPos == metrixArr[0][1].yPos &&
+            metrixArr[0][1].yPos == metrixArr[0][2].yPos
+          ) {
+            console.log("1행 맞춤...");
+            document.querySelector("#line1").style.display = "block";
+          }
+          if (
+            metrixArr[1][0].yPos == metrixArr[1][1].yPos &&
+            metrixArr[1][1].yPos == metrixArr[1][2].yPos
+          ) {
+            document.querySelector("#line2").style.display = "block";
+          }
+          if (
+            metrixArr[2][0].yPos == metrixArr[2][1].yPos &&
+            metrixArr[2][1].yPos == metrixArr[2][2].yPos
+          ) {
+            document.querySelector("#line3").style.display = "block";
+          }
+          if (
+            metrixArr[0][0].yPos == metrixArr[1][0].yPos &&
+            metrixArr[1][0].yPos == metrixArr[2][0].yPos
+          ) {
+            document.querySelector("#line4").style.display = "block";
+          }
+          if (
+            metrixArr[0][1].yPos == metrixArr[1][1].yPos &&
+            metrixArr[1][1].yPos == metrixArr[2][1].yPos
+          ) {
+            document.querySelector("#line5").style.display = "block";
+          }
+          if (
+            metrixArr[0][2].yPos == metrixArr[1][2].yPos &&
+            metrixArr[1][2].yPos == metrixArr[2][2].yPos
+          ) {
+            document.querySelector("#line6").style.display = "block";
+          }
+          if (
+            metrixArr[2][0].yPos == metrixArr[1][1].yPos &&
+            metrixArr[1][1].yPos == metrixArr[0][2].yPos
+          ) {
+            document.querySelector("#line8").style.display = "block";
+          }
+          if (
+            metrixArr[0][0].yPos == metrixArr[1][1].yPos &&
+            metrixArr[1][1].yPos == metrixArr[2][2].yPos
+          ) {
+            document.querySelector("#line7").style.display = "block";
+          }
+        }, 1100);
       });
     </script>
   </body>

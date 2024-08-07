@@ -8,13 +8,77 @@
   </head>
   <body>
     <h1>Todo List</h1>
-
+    <input type="text" id="title" /> <button id="saveBtn">Save</button>
+    <hr />
+    <!-- xml 방식의 조금 엄격한 방식.. -->
+    <!-- 리액트에서는 안닫으면 오류난다! -->
+    <ul id="listArea"></ul>
     <script>
+      const todoList = [
+        { no: 101, title: "밥 하기", done: false },
+        { no: 102, title: "밥 하기", done: false },
+        { no: 103, title: "밥 하기", done: false },
+      ];
+      let cnt = 1;
+
       //밑에 두면 DOM 로딩 기다릴 필요 x
       // $(document).ready(function() {}) 축약형태..
       $(function () {
-        alert("helll");
-        console.log(this);
+        $("#saveBtn").on("click", function () {
+          //   $("body").css("background", "yellow");
+          //  js속성       jQuery속성
+          // innerHTML     .html() // 전부 바꿔버림
+          // innerText     .text()
+          // value         .val()
+          //   alert($("#title").val());
+
+          // input 에서 읽어온 text listArea에 추가
+          // jQuery append() 를 쓰는 경우? - 문자열을 즉시 DOM으로 변경...
+
+          // 유효성 체크..
+          if ($("#title").val()) {
+            // li에다 data-no값 지정..
+            $("#listArea").append(`<li data-no="${cnt++}">
+                <input type="checkbox" />
+                <span>${$("#title").val()}</span>
+                <button class="editBtn">EDIT</button>
+                <button class="delBtn">DELETE</button>
+                </li>`);
+
+            // 요소가 생성된 후에 이벤트 핸들러를 추가 해야한다..?
+            $("button.delBtn").bind("click", function (e) {
+              e.preventDefault();
+              // e.target은 DOM
+              // $(e.target) 은 jQuery 객체
+              // console.log(e.target.parentElement);
+              console.log($(e.target).parent().find("span").text());
+              console.log($(e.target).parent().data("no"));
+              // css("color") 인자를 하나만 쓰면 getter
+              // css("color", "orange") 인자를 두개를 쓰면 setter
+              // attr("name")
+            });
+
+            $("#title").val("");
+
+            $("li:last").bind("click", (e) => {
+              console.log("input에도 전달");
+            });
+
+            // 추가된것 잠깐 커짐..
+            $("li:last")
+              .focus()
+              .animate({ fontSize: "18px" }, 200, function () {
+                setTimeout(() => {
+                  $("li:last").animate({ fontSize: "16px" }, 200);
+                  console.log(this);
+                }, 300); // 300ms 후에 원래 크기로 복원
+              });
+          } else {
+            alert("Please enter a title");
+            $("#title").focus();
+            return;
+          }
+        });
       });
 
       $(() => {

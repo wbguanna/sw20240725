@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function() {
+            var header = document.getElementById("header");
+            console.log(header);
+
+            // CSS에서 사용되는 선택기를 그대로 사용.
+            console.log( $("#header").get(0) );
+            console.log( $("#header")[0] == header );
+            console.log( $("#header")[0] == $(header)[0] );
+
+            // CSS 셀렉터를 이용해서 jQuery 객체 만들기.
+            $("#header").css("color", "red");
+            // 기존 javascript DOM객체로 jQuery 객체 만들기
+            $(header).css("background", "yellow");
+            document.getElementById("header").style.textShadow="1px 1px 1px black";
+
+            $("#header h2").css({
+                color: "orange",
+                backgroundColor: "green",
+                fontFamily: "궁서"
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="header">
+        <h1>Hello world</h1>
+        <h2>오신것을 환영합니다.</h2>
+    </div>
+</body>
+</html>
