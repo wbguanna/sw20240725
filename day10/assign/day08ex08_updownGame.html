@@ -7,21 +7,35 @@
     <style>
       * {
         margin: 0 auto;
+        border: 1px dashed red;
       }
 
       body {
         margin: 30px auto;
         width: 80%;
       }
+
+      .container,
+      .container > * {
+        width: 510px;
+      }
+
+      .btns {
+      }
+
       .btn {
         margin: 5px;
+        width: 40px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <p>다음에서 시스템이 만든 숫자를 선택하세요.</p>
-    <p id="status">결과:</p>
-    <div id="btns"></div>
+    <div class="container">
+      <p>다음에서 시스템이 만든 숫자를 선택하세요.</p>
+      <p id="status">결과:</p>
+      <div id="btns"></div>
+    </div>
 
     <script>
       // 1보다 작은 난수 발생
@@ -37,20 +51,16 @@
       // 시스템이 1 ~ 100 사이의 정수를 무작위로 선택한다.
       // 사용자가 5회 시도 안에 정수를 맞추는 게임
 
+      let min, max, num, cnt;
       function initGame() {
         min = 1;
         max = 100;
         num = getRandInt(min, max);
-        console.log("num =>", num);
         cnt = 5;
+
+        console.log("num =>", num);
         draw();
       }
-
-      let min = 1;
-      let max = 100;
-      let num = getRandInt(min, max);
-      let cnt = 5;
-      console.log("num =>", num);
 
       let btns = document.querySelector("#btns");
       let status = document.querySelector("#status");
@@ -61,8 +71,10 @@
         btns.innerHTML = "";
         for (let i = min; i <= max; i++) {
           let newBtn = document.createElement("button");
-          newBtn.classList.add("btn" + i);
           newBtn.classList.add("btn");
+          // newBtn.classList.add(i); // 숫자만 쓰는것은 좋지않다.. querySelector 등 동작 x
+
+          newBtn.classList.add("btn" + i);
           // newBtn.innerText = i < 10 ? "00" + i : i < 100 ? "0" + i : i;
           newBtn.innerText = i;
           btns.appendChild(newBtn);
@@ -104,9 +116,10 @@
               reInitBtn.addEventListener("click", function (e) {
                 e.preventDefault();
                 initGame();
+                this.remove();
               });
               reInitBtn.innerText = "다시시작?";
-              document.body.appendChild(reInitBtn);
+              btns.parentElement.appendChild(reInitBtn);
             }
 
             // 함수가 함수 자신을 재귀호출
@@ -115,14 +128,12 @@
         }
       }
 
-      draw();
-
       function selectAuto() {
         getRandInt(min, max);
         let choice = getRandInt(min, max);
         let selectedBtn;
         while (cnt > 0) {
-          alert(choice);
+          // alert(choice);
           window.document.querySelector(`.btn${choice}`).click();
           //   console.log(selectedBtn);
           //   selectedBtn.onclick();
@@ -136,6 +147,8 @@
           choice = getRandInt(min, max);
         }
       }
+
+      initGame();
     </script>
   </body>
 </html>
