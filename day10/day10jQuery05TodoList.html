@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+</head>
+<body>
+    <h1>Todo List</h1>
+    제목: <input type="text" id="title" value="밥하기">
+    <button id="saveBtn">Save</button>
+    <hr/>
+    <ul id="listArea"></ul>
+
+    <script>
+        const todoList = [
+            {no:101, title:'밥 하기', done: false},
+            {no:101, title:'빨래 하기', done: false},
+            {no:101, title:'청소 하기', done: false}
+        ];
+        
+        // $(document).ready(function(){})의 축약한 형태
+        var cnt = 1;
+        $(function() {
+            
+            $('#saveBtn').on('click', function() {
+                //$('body').css('background', 'yellow');
+                // innerHTML 속성 = .html() 함수
+                // innerText 속성 = .text() 함수
+                // value 속성 = .val() 함수
+                //alert( $('#title').val() );
+
+                // input에서 읽어온 text를 listArea에 추가
+                // jQuery append()함수 사용 - 문자열을 즉시 DOM으로 변경.
+                if($('#title').val()) {
+                    $('#listArea').append(`<li data-no="10${cnt++}">
+                        <input type="checkbox"/>
+                        <span>${ $('#title').val() }</span>
+                        <button class="editBtn">EDIT</button>
+                        <button class="delBtn">DELETE</button>
+                    </li>`);
+                    // 요소가 생성 후에 이벤트 핸들러를 추가 해야한다.
+                    $('button.delBtn').bind('click', function(e) {
+                        // e.target은 DOM
+                        // $(e.target)은 jQuery 객체
+                        // console.log(e.target.parentElement);
+                        console.log( $(e.target).parent().find('span').text() );
+                        console.log( $(e.target).parent().data('no') );
+                        // css("color") 인자를 하나만 쓰면 getter
+                        // css("color", "orange") 인자 두개는 setter
+                        // attr("name") getter, attr("name", "aaa") setter
+                    });
+                    $('#title').val("");
+                } else {
+                    alert("제목을 입력 하고 SAVE하세요.");
+                    $('#title').focus();
+                    return;
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
