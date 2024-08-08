@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ul.innerBox {
+        width: 100px;
+        height: 100px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        transition: 0.5s cubic-bezier(0.45, -0.06, 0.47, 1.35);
+        padding: 0px;
+        margin: 0px;
+      }
+      ul.innerBox li {
+        background: linear-gradient(
+          0deg,
+          rgba(112, 89, 35, 1) 12%,
+          rgba(232, 187, 23, 1) 80%
+        );
+      }
+      ul.innerBox li:nth-child(2) {
+        background: linear-gradient(0deg, #724314 12%, #e84f17 80%);
+      }
+      ul.innerBox li {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        list-style-type: none;
+        line-height: 100px;
+        text-align: center;
+        font-size: 36pt;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      div.outerBox {
+        border: 1px solid black;
+        width: 100px;
+        height: 100px;
+        left: 0px;
+        top: 0px;
+        position: relative;
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+        float: left;
+        box-sizing: border-box;
+      }
+      .puzzle {
+        width: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="puzzle"></div>
+
+    <!-- 클래스에서 생성 가능하도록 하기 -->
+    <script>
+      function CellBox(dom, ch) {
+        this.tagSet = document.createElement("div");
+        this.tagSet.className = "outerBox";
+        this.ulTag = document.createElement("ul");
+        this.ulTag.className = "innerBox";
+        this.li1 = document.createElement("li");
+        this.li1.innerText = ch;
+        this.li2 = document.createElement("li");
+        this.li2.innerText = "?";
+
+        dom.appendChild(this.tagSet);
+        this.tagSet.appendChild(this.ulTag);
+        this.ulTag.appendChild(this.li1);
+        this.ulTag.appendChild(this.li2);
+
+        this.tagSet.onclick = this.clickEventHandler;
+
+        //var THIS = this;
+        setTimeout(() => {
+          // function 콜백함수에서 this는 window이다.
+          // 화살표 함수에서 this는 생성된 객체가 된다.
+          this.closeCard();
+        }, 2000);
+      }
+      CellBox.prototype.clickEventHandler = function (event) {
+        const innerBox = this.children[0];
+        innerBox.style.top = "0px";
+
+        // 알파벳 비교
+        // 1. 첫번째 클릭인가?
+        // 1-1. 임시로 저장하기
+        // 2. 두번째 클릭인가?
+        // 2-1. 첫번째 클릭의 알파벳과 비교
+        // 3. 비교후 다른 알파벳이면 둘다 closeCard 후 임시저장 초기화
+        if (CellBox.prototype.tempCell == null) {
+          CellBox.prototype.tempCell = this;
+        } else {
+          var first = CellBox.prototype.tempCell.children[0];
+          var second = this.children[0];
+          var firstCh = first.querySelector("li").innerText;
+          var secondCh = second.querySelector("li").innerText;
+          if (firstCh == secondCh) {
+            // 정답일경우
+          } else {
+            setTimeout(function () {
+              first.style.top = "-100px";
+              second.style.top = "-100px";
+            }, 500);
+          }
+          CellBox.prototype.tempCell = null;
+        }
+      };
+      CellBox.prototype.tempCell = null;
+      CellBox.prototype.closeCard = function (event) {
+        const innerBox = this.ulTag;
+        innerBox.style.top = "-100px";
+      };
+
+      const puzzle = document.querySelector(".puzzle");
+      for (var i = 0; i < 16; i++) {
+        new CellBox(puzzle, String.fromCharCode((i % 8) + 65));
+      }
+
+      var cells = puzzle.querySelectorAll(".innerBox li:nth-child(1)");
+      for (var i = 0; i < 50; i++) {
+        var idx1 = Math.floor(Math.random() * cells.length);
+        var idx2 = Math.floor;
+        Math.random() * cells.length;
+
+        var temp = cells[idx1].innerText;
+        cells[idx1].innerText = cells[idx2].innerText;
+        cells[idx2].innerText = temp;
+      }
+    </script>
+  </body>
+</html>

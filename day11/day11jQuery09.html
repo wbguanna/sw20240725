@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/jquery.min.js"></script>
+  </head>
+  <body>
+    <h2>Mthod chaining Example</h2>
+    <p>This is a paragraph.</p>
+    <button id="btn">Change Style</button>
+
+    <h2>Custom jQuery function Example</h2>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="highlightBtn">Highlight</button>
+    <script>
+      $(document).ready(function () {
+        $("#btn").click(function () {
+          $("p")
+            .css("color", "red")
+            .slideUp("fast", function () {})
+            .slideDown("slow");
+        });
+      });
+    </script>
+  </body>
+</html>

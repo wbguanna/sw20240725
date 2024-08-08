@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #grid {
+        border: 5px solid blue;
+        width: 300px;
+        height: 300px;
+      }
+      #grid > div {
+        border: 1px solid orange;
+        box-sizing: border-box;
+        border: 1px solid skyblue;
+        width: 100px;
+        height: 100px;
+        float: left;
+      }
+      #grid > div:first-child {
+        background-color: yellow;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script>
+      $(document).ready(function () {
+        // css의 여러 속성 지정 - 객체 리터럴 사용.
+        //$('#grid>div:first').css({backgroundColor:'red', color:'yellow'});
+        $("#choice").on("change", function () {
+          // $()함수에 DOM요소를 입력하면 jQuery 객체로 바뀐다.
+          var idx = $(this).val();
+          $("#grid>div").css({ backgroundColor: "white", color: "" });
+          $("#grid>div:nth(" + idx + ")").css({
+            backgroundColor: "red",
+            color: "yellow",
+          });
+          $("#btnGroup>button").css({ backgroundColor: "white", color: "" });
+          $("#btnGroup>button:nth(" + idx + ")").css({
+            backgroundColor: "red",
+            color: "yellow",
+          });
+        });
+
+        $("#btnGroup>button").click(function () {
+          var idx = this.innerText;
+          $(`#choice>option:nth(${idx - 1})`).prop("selected", "true");
+          $("#grid>div").css({ backgroundColor: "white", color: "" });
+          $("#grid>div:nth(" + (idx - 1) + ")").css({
+            backgroundColor: "red",
+            color: "yellow",
+          });
+          $("#btnGroup>button").css({ backgroundColor: "white", color: "" });
+          $(this).css({ backgroundColor: "red", color: "yellow" });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h2>jQuery 셀렉터</h2>
+    <div id="btnGroup">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button> |
+      <select name="" id="choice">
+        <option value="0">1</option>
+        <option value="1">2</option>
+        <option value="2">3</option>
+        <option value="3">4</option>
+        <option value="4">5</option>
+        <option value="5">6</option>
+        <option value="6">7</option>
+        <option value="7">8</option>
+        <option value="8">9</option>
+      </select>
+    </div>
+    <hr />
+    <div id="grid">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+    </div>
+  </body>
+</html>

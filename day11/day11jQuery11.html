@@ -1,0 +1,37 @@
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jQuery Traversal Example</title>
+    <!-- jQuery 라이브러리 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>jQuery Traversal Example</h2>
+    <ul>
+      <li class="fruit">Apple</li>
+      <li class="fruit"><span>Orange</span></li>
+      <li class="vegetable">Carrot</li>
+      <li class="fruit">Banana</li>
+      <li class="vegetable">Broccoli</li>
+    </ul>
+
+    <script>
+      // 부모, 자식, 형제 요소 선택
+      $(document).ready(function () {
+        var orange = $('li:contains("Orange")'); // Orange 요소 선택
+        var parentOfOrange = orange.parent(); // Orange 요소의 부모 요소 선택
+        parentOfOrange.css("background-color", "yellow");
+
+        var fruits = $("li.fruit"); // 모든 과일 요소 선택
+        var childrenOfFruits = fruits.children(); // 모든 과일 요소의 자식 요소 선택
+        childrenOfFruits.css("font-weight", "bold");
+
+        var banana = $('li:contains("Banana")'); // Banana 요소 선택
+        var siblingsOfBanana = banana.siblings(); // Banana 요소의 형제 요소 선택
+        siblingsOfBanana.css("color", "blue");
+      });
+    </script>
+  </body>
+</html>
+```
