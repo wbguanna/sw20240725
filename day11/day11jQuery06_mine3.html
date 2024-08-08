@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/jquery.min.js"></script>
+    <style>
+      div {
+        margin: 13px 0;
+      }
+      .todoList li.redColor {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1 class="heading">Hello world</h1>
+      <!-- 헤띵 -->
+      <div class="navi">HOME | Profile | Gallery</div>
+    </div>
+    <div>
+      <button id="transKorBtn">한글로 변환</button
+      ><button id="toggleTodoListBtn">목록감추기</button>
+    </div>
+    <div>
+      제목:
+      <input type="text" class="todoTitle" />
+      <hr />
+      <ul class="todoList"></ul>
+    </div>
+
+    <!-- 
+        - **`text()`** 메서드를 사용하여 요소의 텍스트 내용을 변경 (`innerText` 속성)
+        - **`html()`** 메서드를 사용하여 요소의 HTML 내용을 변경 (`innerHTML` 속성)
+        - **`attr()`** 메서드를 사용하여 요소의 속성 값을 가져오거나 설정 (`setAttribute()` 메서드)
+        - **`val()`** 메서드를 이용해서 input 요소의 값을 가져오거나 설정 (`value` 속성)
+        - **`css()`** 메서드를 사용해서 요소의 스타일을 설정하거나 값을 가져온다(`style` 속성) 
+    -->
+    <script>
+      // head태그 아래에 있어도 jQuery 진입점을 쓰는게 좋다
+      // ready()는 DOM 트리의 구조만 로드되어도 바로 실행됨
+
+      let noCnt = 1;
+      jQuery(document).ready(function () {
+        // alert($(".heading").text());
+        $("#transKorBtn").bind("click", function (event) {
+          $(".heading").text("안녕 세계");
+
+          $(".navi").html(`
+            <a href="#">홈</a> |
+            <a href="#">프로필</a> |
+            <a href="#">갤러리</a>`);
+        });
+
+        $("#toggleTodoListBtn").on("click", function (event) {
+          // let list = $(".todoList").children;
+          // for (li in list) {
+          //   $(li).toggle("fast");
+          // }
+
+          $(".todoList").toggle("fast");
+        });
+
+        $(".todoTitle").change(function (event) {
+          // console.log($(event.target).val());
+          const newTitle = $(event.target).val();
+
+          // $(".todoList").append(
+          //   $(`<li>${newTitle}</li>`).data(`todoNo${noCnt++}`)
+          // );
+          $(".todoList")
+            .append(`<li></li>`)
+            .children(`li:last`)
+            .data(`todoNo${noCnt++}`, this)
+            .append(`<p>${newTitle}</p>`);
+
+          console.log($(".todoList").data("todoNo1"));
+          // .append(`<p>${newTitle}</p>`);
+
+          // .prependTo(".todoList");
+          // .append(`<p>${newTitle}</p>`);
+
+          // $(".todoList").append(`<li><p>${newTitle}</p></li>`);
+          // input 초기화 및 포커스 (메서드 체인)
+          $(event.target).focus().val("");
+        });
+      });
+    </script>
+  </body>
+</html>
