@@ -6,26 +6,6 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery.js"></script>
     <style>
-      body {
-        min-width: 600px;
-      }
-
-      #hint {
-        /* display: none; */
-        position: absolute;
-        right: 15%;
-        top: 10%;
-        background: none;
-        border: none;
-        text-align: center;
-      }
-      #hint > img {
-        width: 125px;
-        height: 125px;
-        transform: scaleX(-1) rotate(30deg);
-        z-index: -1;
-      }
-
       #puzzle {
         position: relative;
         left: 0px;
@@ -51,12 +31,11 @@
     <script>
       // 전역변수로 선언한다.
       var firstClickCell = null;
-      var hintCounter = 3;
+
       class Cell {
         constructor(ch) {
           this.cell = $(`<div class='cell'>${ch}</div>`);
           this.cell.data("ch", ch);
-          this.cell.data("pair", this);
         }
 
         init() {
@@ -75,12 +54,6 @@
             if (firstClickCell == null) {
               console.log("첫번째 클릭!");
               firstClickCell = this;
-              // 힌트추가
-              if (hintCounter > 0)
-                setTimeout(() => {
-                  $("#hint").fadeIn("slow");
-                }, 1000); // 테스트용
-              // }, 50000); // 50초 설정
             } else {
               if (firstClickCell === this) {
                 console.log("같은 셀을 연속 클릭 했다!");
@@ -101,7 +74,6 @@
       }
 
       $(function () {
-        const hintData = [];
         const newDivList = [];
         for (let i = 0; i < 16; i++) {
           let newDiv = new Cell(String.fromCharCode((i % 8) + 65));
@@ -121,13 +93,8 @@
 
         const cells = document.querySelectorAll("#puzzle div");
         for (let i = 0; i < 100; i++) {
-          let pos = Math.floor(Math.random() * cells.length); // 이상한부분
-          console.log(`${i}번째 : ${pos} : ${cells[pos].innerHTML}`);
+          let pos = Math.floor(Math.random() * cells.length);
           $("#puzzle").append(cells[pos]);
-        }
-
-        for (let cell in cells) {
-          hintData.append(cell.innerText);
         }
 
         setTimeout(function () {
@@ -158,8 +125,7 @@
   </head>
   <body>
     <h1>짝 맞추기 퍼즐 게임</h1>
-    <button id="hint"><img src="twitterBird.png" alt="" />hint?</button>
     <div id="puzzle"></div>
-    <div><span id="secArea">5</span>초 후 게임이 시작 됩니다!</div>
+    <div>>>>> <span id="secArea">5</span>초 후 게임이 시작 됩니다!</div>
   </body>
 </html>
