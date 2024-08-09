@@ -32,6 +32,7 @@
           //   console.log("dom.click() 호출...");
           // 특정 함수 이름 ()
           // 함수 이름만 사용 하는 것은 참조
+          console.log(callback);
           dom.onclick = callback;
           //   dom.onclick = (e) => {
           //     callback(e);
@@ -62,14 +63,14 @@
         .color("red")
         .click((event) => {
           //   console.log("클릭됨");
-          //   console.log(this);
+          console.log(this);
           //   console.log(event.target);
         });
       $("#btn2")
         .color("red")
         .click(function (event) {
           //   console.log("클릭됨");
-          //   console.log(this);
+          console.log(this);
           //   console.log(event.target);
           console.log(event.target === this);
           this.posx(200).posy(50);

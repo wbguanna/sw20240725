@@ -73,61 +73,16 @@ app.get("/todo/search", (req, res) => {
 });
 
 //  상세보기 or 전체보기
-app.get("/todo", (req, res) => {
-  if (req.query.no) {
-    var no = req.query.no;
-    var idx = todoList.findIndex((t) => {
-      return t.no == no;
-    });
-    if (idx != -1) {
-      res.send(todoList[idx]);
-    } else {
-      res.send(null);
-    }
-    return;
-  }
-
-  res.send(todoList);
-});
+app.get("/todo", (req, res) => {});
 
 // 입력
-app.post("/todo", (req, res) => {
-  var title = req.body.title;
-  todoList.push({ no: noSeq++, title, done: false });
-  res.send(todoList);
-});
+app.post("/todo", (req, res) => {});
 
 // 수정
-app.put("/todo", (req, res) => {
-  //var no = req.body.no;
-  //var title = req.body.title;
-  //var done = req.body.done; // 문자열을 boolean으로 변경.
-
-  var todo = req.body;
-  console.dir(todo);
-  var idx = todoList.findIndex((t) => {
-    return t.no == todo.no;
-  });
-  if (idx != -1) {
-    todoList[idx] = todo;
-  }
-
-  res.send(todoList);
-});
+app.put("/todo", (req, res) => {});
 
 // 삭제
-app.delete("/todo", (req, res) => {
-  var no = parseInt(req.body.no);
-  var idx = todoList.findIndex((t) => {
-    return t.no == no;
-  });
-  if (idx != -1) {
-    todoList.splice(idx, 1);
-  }
-  res.send(todoList);
-});
+app.delete("/todo", (req, res) => {});
 
 const server = http.createServer(app);
-server.listen(app.get("port"), () => {
-  console.log(`노드js 서버 실행 중 >>> http://localhost:${app.get("port")}`);
-});
+server.listen(app.get("port"), () => {});
