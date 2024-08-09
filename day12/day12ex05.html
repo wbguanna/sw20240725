@@ -11,13 +11,16 @@
       }
 
       .container {
+        /* 상위 요소에 flex, flex-wrap 을 주면
+         블럭크기, 화면크기에 따라 블럭이 다음으로 넘어간다 */
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
-        justify-content: center;
         min-height: 100vh;
+        justify-content: center;
         align-items: center;
       }
 
@@ -31,23 +34,21 @@
         /* float: left; /* flex를 사용하면 flozt 필요없다 */
       }
 
-      @media (max-width: 1200px) {
+      /* @media (max-width: 1200px) {
         .box {
           flex: 0 0 calc(50% - 20px);
           font-size: 16px;
           padding: 30px;
-          /* clear: both 를 활용해 */
           clear: both;
-          /* width 를 vw를 활용해 화면 */
           width: 70vw;
         }
-      }
+      } */
 
       /* 미디어 쿼리 */
       @media (max-width: 767px) {
         /* 화면 너비가 767px 이하일 때 적용되는 스타일 */
         .box {
-          flex: 0 0 calc(50% - 20px);
+          flex: 0 0 calc(70% - 20px);
           font-size: 16px;
           padding: 30px;
           /* clear: both 를 활용해 */
